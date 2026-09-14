@@ -58,6 +58,20 @@ jobs:
           echo "Checking for .nojekyll:"
           ls -la ./public/.nojekyll || echo ".nojekyll not found - this might cause issues"
 
+      - name: Check Hugo output
+        run: |
+          echo "===== HUGO OUTPUT ====="
+          echo "Title:"
+          grep -i "<title>" ./public/index.html
+
+          echo ""
+          echo "===== INDEX FILE ====="
+          ls -lh ./public/index.html
+
+          echo ""
+          echo "===== FIRST 20 LINES ====="
+          head -20 ./public/index.html
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
