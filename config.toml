@@ -62,7 +62,7 @@ defaultContentLanguage = "en"
 [params.profileMode]
   enabled = true
   title = "May Thin Kyi"
-  subtitle = "A Software Engineer who interests about design scalable and high concurrency software systems. Currently for my career development, I’m learning Software Design, Microservices, System Architecture, Apache Kafka, Redis , Event Driven Architecture and Distributed Systems."
+  subtitle = "A Software Engineer from Myanmar working as an Associate Enginner @Frontiir. Currently for my career development, I’m learning Software Design, Microservices, System Architecture, Apache Kafka, Redis , Event Driven Architecture and Distributed Systems."
   imageUrl = "/images/profile.png"
   imageWidth = 240
   imageHeight = 240
