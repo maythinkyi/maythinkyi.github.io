@@ -1,0 +1,138 @@
+baseURL = "https://maythinkyi.github.io/"
+title = "May Thin Kyi | Software Engineer"
+theme = "PaperMod"
+copyright = "© 2026 May Thin Kyi"
+languageCode = "en-us"
+defaultContentLanguage = "en"
+
+# Global parameters
+[params]
+  env = "production"
+  description = "A Software Engineer"
+  keywords = ["technology", "personal-blog", "software-engineering", "myanmar"]
+  author = "May Thin Kyi"
+
+  # Theme settings
+  defaultTheme = "auto"
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowWordCount = true
+  ShowRssButtonInSectionTermList = true
+  UseHugoToc = true
+  disableSpecial1stPost = false
+  disableScrollToTop = false
+  comments = true
+  hidemeta = false
+  hideSummary = false
+  showtoc = true
+  tocopen = false
+
+  # Giscus comments configuration
+  [params.giscus]
+    repo = "maythinkyi/maythinkyi.github.io"
+    repoID = "" # Will be filled after enabling Discussions
+    category = "General"
+    categoryID = "" # Will be filled after enabling Discussions
+    mapping = "pathname"
+    strict = "0"
+    reactionsEnabled = "1"
+    emitMetadata = "0"
+    inputPosition = "bottom"
+    theme = "preferred_color_scheme"
+    lang = "en"
+    loading = "lazy"
+
+  # Social icons
+  [[params.socialIcons]]
+    name = "github"
+    url = "https://github.com/maythinkyi"
+
+  [[params.socialIcons]]
+    name = "linkedin"
+    url = "https://www.linkedin.com/in/may-thin-kyi-023b861b6/"
+
+  [[params.socialIcons]]
+    name = "email"
+    url = "mailto:maythinkyi2003@gmail.com"
+
+  # Profile mode with profile photo
+[params.profileMode]
+  enabled = true
+  title = "May Thin Kyi"
+  subtitle = "A Software Engineer who interests about design scalable and high concurrency software systems. Currently for my career development, I’m learning Software Design, Microservices, System Architecture, Apache Kafka, Redis , Event Driven Architecture and Distributed Systems."
+  imageUrl = "/images/profile.png"
+  imageWidth = 240
+  imageHeight = 240
+  imageTitle = "Joe's Profile Photo"
+
+  # Enable Mermaid diagrams
+  [params.assets]
+    disableFingerprinting = false
+  
+  [params.mermaid]
+    enable = true
+
+  # Profile mode buttons
+  [[params.profileMode.buttons]]
+    name = "About"
+    url = "/about"
+
+  [[params.profileMode.buttons]]
+    name = "Blog"
+    url = "/blog"
+
+  [[params.profileMode.buttons]]
+    name = "Tags"
+    url = "/tags"
+
+  # Home info mode (disabled when profile mode is enabled)
+  [params.homeInfoParams]
+    Title = "Hi, I'm Joe 👋"
+    Content = "Welcome to my personal space on the web! I'm a software engineer from Myanmar currently living in Sydney, sharing stories about technology, life experiences, and everything that catches my interest."
+
+# Navigation
+[[menu.main]]
+  name = "Home"
+  url = "/"
+  weight = 1
+
+[[menu.main]]
+  name = "Blog"
+  url = "/blog/"
+  weight = 2
+
+[[menu.main]]
+  name = "About"
+  url = "/about/"
+  weight = 3
+
+[[menu.main]]
+  name = "Tags"
+  url = "/tags/"
+  weight = 4
+
+# Markup configuration
+[markup]
+  [markup.highlight]
+    style = "github"
+    codeFences = true
+    guessSyntax = true
+    lineNos = true
+    lineNumbersInTable = false
+    noClasses = false
+
+  [markup.goldmark.renderer]
+    unsafe = true
+
+# Taxonomies
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  series = "series"
+
+# Outputs
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
