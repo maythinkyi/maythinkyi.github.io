@@ -1,0 +1,2005 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>May Thin Kyi | Software Engineer</title>
+    
+    <!-- Google Fonts: Editorial Serif + Clean Geometric Sans + Technical Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        warm: {
+                            bg: '#f9f7f2',         /* Crisp warm linen/cream */
+                            panel: '#f2ede2',      /* Subtle off-white warm panel */
+                            border: '#e2dcd0',     /* Hairline warm border */
+                            borderDark: '#221c17', /* Dark brown high contrast border */
+                            text: '#221c17',       /* Rich espresso primary text */
+                            body: '#4a423a',       /* Warm charcoal body text */
+                            muted: '#887d72',      /* Taupe muted text */
+                            accent: '#8c4a2f',     /* Earth terracotta accent */
+                            darkBg: '#1a1613',     /* Optional dark earth bg */
+                            darkPanel: '#241e19',  /* Optional dark earth panel */
+                            darkBorder: '#383028'  /* Dark mode subtle border */
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+                        sans: ['"Space Grotesk"', 'sans-serif'],
+                        mono: ['"Space Mono"', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        ::selection {
+            background-color: #221c17;
+            color: #f9f7f2;
+        }
+        .dark ::selection {
+            background-color: #f9f7f2;
+            color: #1a1613;
+        }
+        
+        /* Swiss Grid Subtle Background Pattern */
+        .bg-swiss-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(34, 28, 23, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(34, 28, 23, 0.05) 1px, transparent 1px);
+        }
+        .dark .bg-swiss-grid {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(249, 247, 242, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(249, 247, 242, 0.05) 1px, transparent 1px);
+        }
+
+        /* Fine custom scrollbars */
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f9f7f2;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d4ccbf;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #1a1613;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background: #383028;
+        }
+
+        /* Minimal smooth fade in animation */
+        .fade-in {
+            animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Navigation Active Indicator */
+        .nav-link {
+            position: relative;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s ease-in-out;
+        }
+        .nav-link.active {
+            border-bottom-color: #8c4a2f;
+        }
+        .dark .nav-link.active {
+            border-bottom-color: #8c4a2f;
+        }
+
+        /* Domain Card Hover Active Indicator Styles */
+        .domain-card {
+            border-left: 2px solid #e2dcd0;
+            transition: all 0.2s ease-in-out;
+        }
+        .dark .domain-card {
+            border-left-color: #383028;
+        }
+
+        .domain-card:hover {
+            border-left-color: #221c17;
+        }
+        .dark .domain-card:hover {
+            border-left-color: #f9f7f2;
+        }
+        
+
+        /* Article Typography Styling */
+        .article-content h2 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.875rem;
+            line-height: 2.25rem;
+            font-weight: 600;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(136, 125, 114, 0.2);
+            padding-bottom: 0.5rem;
+        }
+        .article-content h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.5rem;
+            line-height: 2rem;
+            font-weight: 600;
+            margin-top: 1.75rem;
+            margin-bottom: 0.75rem;
+        }
+        .article-content p {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.75;
+            margin-bottom: 1.25rem;
+        }
+        .article-content ul, .article-content ol {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+        .article-content ul { list-style-type: disc; }
+        .article-content ol { list-style-type: decimal; }
+        .article-content li { margin-bottom: 0.5rem; }
+        .article-content blockquote {
+            border-left: 3px solid #8c4a2f;
+            padding-left: 1.25rem;
+            margin: 1.75rem 0;
+            font-style: italic;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 1.2rem;
+        }
+        .article-content code {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.825rem;
+            padding: 0.15rem 0.4rem;
+            background-color: rgba(0,0,0,0.05);
+            border-radius: 2px;
+        }
+        .dark .article-content code {
+            background-color: rgba(255,255,255,0.08);
+        }
+        .article-content pre {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            padding: 1.25rem;
+            background-color: #1a1613;
+            color: #f9f7f2;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            border: 1px solid #383028;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body class="bg-warm-bg dark:bg-warm-darkBg text-warm-text dark:text-warm-bg font-sans antialiased transition-colors duration-200 min-h-screen flex flex-col">
+
+    <header class="sticky top-0 z-50 bg-warm-bg/95 dark:bg-warm-darkBg/95 backdrop-blur-md border-b border-warm-border dark:border-warm-darkBorder font-mono text-xs">
+        <div class="max-w-[1400px] mx-auto flex flex-col md:grid md:grid-cols-12 md:divide-x divide-warm-border dark:divide-warm-darkBorder">
+            
+            <!-- Monogram & Title Header Bar -->
+            <div class="py-4 px-6 flex items-center justify-between md:col-span-5 md:py-6">
+                <a href="#hero" onclick="navigateToHome()" class="flex items-center gap-3 font-semibold tracking-wider hover:opacity-75 transition-opacity">
+                    <span class="text-md sm:text-xl">MAY THIN KYI</span>
+                </a>
+                
+                <div class="flex items-center gap-3">
+                    
+                    <!-- Mobile Hamburger Menu Button -->
+                    <button id="mobileMenuBtn" onclick="toggleMobileMenu()" aria-label="Toggle Navigation Menu" class="md:hidden border border-warm-border dark:border-warm-darkBorder p-2 hover:bg-warm-panel dark:hover:bg-warm-darkPanel transition-colors text-warm-text dark:text-warm-bg">
+                        <svg id="hamburgerIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                        <svg id="closeIcon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Essential Navigation Items & Theme Toggle (Desktop Grid / Mobile Collapse) -->
+            <div id="navMenu" class="hidden md:flex flex-col md:flex-row col-span-12 md:col-span-7 py-4 md:py-6 px-6 justify-between items-start md:items-center border-t md:border-t-0 border-warm-border dark:border-warm-darkBorder gap-4 md:gap-0 !border-l-0">
+                <nav class="flex flex-col md:flex-row items-start md:items-center gap-3 md:space-x-6 text-[11px] tracking-widest uppercase font-medium w-full md:w-auto">
+                    <a href="#home" data-nav="home" onclick="navigateToHome(); closeMobileMenu()" class="nav-link active hover:text-warm-accent transition-colors text-warm-text dark:text-warm-bg py-1 md:py-0">
+                        HOME
+                    </a>
+                    <a href="#about" data-nav="about" onclick="openAboutPage(); closeMobileMenu()" class="nav-link hover:text-warm-accent transition-colors text-warm-text dark:text-warm-bg py-1 md:py-0">
+                        ABOUT
+                    </a>
+                    <a href="#work" data-nav="work" onclick="openWorkPage(); closeMobileMenu()" class="nav-link hover:text-warm-accent transition-colors text-warm-text dark:text-warm-bg py-1 md:py-0">
+                        WORK
+                    </a>
+                    <a href="#writing" data-nav="writing" onclick="openWritingPage(); closeMobileMenu()" class="nav-link hover:text-warm-accent transition-colors text-warm-text dark:text-warm-bg py-1 md:py-0">
+                        WRITING
+                    </a>
+                    <a href="#contact" data-nav="contact" onclick="openContactPage(); closeMobileMenu()" class="nav-link hover:text-warm-accent transition-colors text-warm-text dark:text-warm-bg py-1 md:py-0">
+                        CONTACT
+                    </a>
+                </nav>
+                <button id="themeToggle" class="border border-warm-border dark:border-warm-darkBorder px-3.5 py-2 text-[10px] uppercase tracking-widest hover:bg-warm-text hover:text-warm-bg dark:hover:bg-warm-bg dark:hover:text-warm-text transition-all font-mono mt-2 md:mt-0 w-full md:w-auto text-left md:text-center">
+                    THEME: <span id="themeModeLabel">WARM LIGHT</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- PORTFOLIO MAIN PAGE VIEW -->
+    <div id="homeView" class="max-w-[1400px] mx-auto border-x border-warm-border dark:border-warm-darkBorder w-full flex-grow">
+
+        <!-- HERO SECTION - CLEAN & MINIMAL EDITORIAL STATEMENT -->
+        <section id="hero" class="border-b border-warm-border dark:border-warm-darkBorder bg-swiss-grid relative">
+            <div class="grid grid-cols-12 divide-y md:divide-y-0 md:divide-x divide-warm-border dark:divide-warm-darkBorder">
+                
+                <!-- Main Editorial Intro -->
+                <div class="col-span-12 md:col-span-7 p-8 md:p-14 lg:p-16 flex flex-col justify-between min-h-[58vh]">
+                    <div>
+                        <div class="flex items-center gap-2 text-xs font-mono text-warm-muted tracking-widest uppercase mb-8">
+                            <span class="ml-2 sm:ml-4">Associate SOFTWARE ENGINEER @Frontiir</span>
+
+                        </div>
+                        
+                        <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.04] tracking-tight text-warm-text dark:text-warm-bg font-normal mb-8">
+                            A dedicated Software Engineer with a focus on System Automation and efficiency.
+                        </h1>
+                    </div>
+
+                    <div class="space-y-6 pt-8 border-t border-warm-border dark:border-warm-darkBorder">
+                        <p class="text-warm-body dark:text-warm-muted text-base sm:text-lg max-w-xl font-sans font-normal leading-relaxed">
+                            As a Software Engineer, I bring a diverse skill set and a passion for continuous learning to every project. For my career development, I'm learning Software Design,  Distributed Systems and System Architecture.
+                        </p>
+
+                        <div class="flex flex-wrap gap-4 pt-2 font-mono text-xs">
+                            <a href="#work" onclick="openWorkPage()" class="bg-warm-text text-warm-bg dark:bg-warm-bg dark:text-warm-text px-6 py-3.5 uppercase tracking-widest font-medium hover:bg-warm-accent dark:hover:bg-warm-accent dark:hover:text-white transition-colors flex items-center gap-2">
+                                <span>EXPLORE ALL WORK & CASE STUDIES</span>
+                                <span class="text-xs">→</span>
+                            </a>
+                            <a href="#contact" onclick="openContactPage()" class="border border-warm-border dark:border-warm-darkBorder px-6 py-3.5 uppercase tracking-widest hover:border-warm-text dark:hover:border-warm-bg transition-colors">
+                                GET IN TOUCH
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Minimal Architectural Grid Node Schematic -->
+                <div class="col-span-12 md:col-span-5 p-8 sm:p-12 flex flex-col justify-between bg-warm-panel/30 dark:bg-warm-darkPanel/30 font-mono relative min-h-[420px]">
+                    <div class="flex items-center justify-between border-b border-warm-border dark:border-warm-darkBorder pb-3 text-xs text-warm-muted">
+                        <span class="uppercase tracking-widest text-[10px]">MINIMAL NODE SCHEMATIC</span>
+                        <span>FIG. 0.1</span>
+                    </div>
+
+                    <!-- Clean Dot Grid Vector -->
+                    <div class="w-full my-auto flex justify-center items-center py-8">
+                        <div class="w-full max-w-[340px] aspect-square relative border border-warm-border/60 dark:border-warm-darkBorder/60 bg-warm-bg/80 dark:bg-warm-darkBg/80 p-6 shadow-sm">
+                            <svg viewBox="0 0 300 300" class="w-full h-full text-warm-text dark:text-warm-bg">
+                                <defs>
+                                    <pattern id="swissDots" width="60" height="60" patternUnits="userSpaceOnUse">
+                                        <line x1="0" y1="60" x2="60" y2="60" stroke="currentColor" stroke-width="0.5" opacity="0.12" />
+                                        <line x1="60" y1="0" x2="60" y2="60" stroke="currentColor" stroke-width="0.5" opacity="0.12" />
+                                    </pattern>
+                                </defs>
+                                <rect width="300" height="300" fill="url(#swissDots)" />
+
+                                <!-- Clean Orthogonal Connecting Lines -->
+                                <line x1="60" y1="60" x2="180" y2="60" stroke="currentColor" stroke-width="1.2" />
+                                <line x1="180" y1="60" x2="180" y2="180" stroke="currentColor" stroke-width="1.2" />
+
+                                <!-- Key Grid Dots (Nodes) -->
+                                <circle cx="60" cy="60" r="7" fill="currentColor" />
+                                <circle cx="180" cy="60" r="7" fill="currentColor" />
+                                <circle cx="180" cy="180" r="8" fill="currentColor" />
+
+                                <circle cx="100" cy="250" r="7.5" fill="currentColor" opacity="0.9" />
+                                <circle cx="220" cy="250" r="7.5" fill="currentColor" opacity="0.9" />
+
+                                <text x="180" y="200" font-family="Space Mono" font-size="8" fill="currentColor" opacity="0.5" text-anchor="middle">NODE_03</text>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-warm-border dark:border-warm-darkBorder flex items-center justify-between text-[10px] text-warm-muted">
+                        <span>ORTHOGONAL FLOW</span>
+                        <span>SWISS GRID 60px</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 01 // SPECIALIZATIONS & ENGINEERING STANDARDS -->
+        <section id="specializations" class="border-b border-warm-border dark:border-warm-darkBorder">
+            <div class="grid grid-cols-12 divide-y md:divide-y-0 md:divide-x divide-warm-border dark:divide-warm-darkBorder">
+                
+                <!-- Section Header -->
+                <div class="col-span-12 md:col-span-4 p-8 sm:p-10 font-mono">
+                    <span class="text-xs text-warm-muted tracking-widest uppercase block mb-1">SPECIALIZATION</span>
+                    <h2 class="text-3xl text-warm-text dark:text-warm-bg font-serif font-normal">Core Technical Domains</h2>
+                    <p class="text-xs text-warm-body dark:text-warm-muted mt-4 leading-relaxed font-sans">
+                        Primary areas of expertise and operational focus applied daily as an Associate Software Engineer.
+                    </p>
+                </div>
+
+                <!-- Specialized Domain Cards Grid -->
+                <div class="col-span-12 md:col-span-8 p-8 md:p-12">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        
+                        <!-- Domain 1: Backend Engineering -->
+                        <div class="domain-card space-y-3 pl-4">
+                            <div class="flex items-center justify-between">
+                                <span class="font-mono text-xs text-warm-muted">DOMAIN 01</span>
+                             </div>
+                            <h3 class="font-serif text-2xl text-warm-text dark:text-warm-bg font-semibold">Software Development</h3>
+                            <p class="text-sm text-warm-body dark:text-warm-muted font-sans leading-relaxed">
+                                Experienced in developing and enhancing software solutions, including 
+                                legacy codebases, I focus on efficient data handling and implementing best practices.
+                            </p>
+                            <div class="pt-1 font-mono text-xs text-warm-muted">
+                                TECH: Go, NodeJS, Python, ReactJS, JavaScript
+                            </div>
+                        </div>
+
+                        <!-- Domain 2: Database Engineering -->
+                        <div class="domain-card space-y-3 pl-4">
+                            <div class="flex items-center justify-between">
+                                <span class="font-mono text-xs text-warm-muted">DOMAIN 02</span>
+                             </div>
+                            <h3 class="font-serif text-2xl text-warm-text dark:text-warm-bg font-semibold">Database Integration</h3>
+                            <p class="text-sm text-warm-body dark:text-warm-muted font-sans leading-relaxed">
+                                Designing, modeling, and query perfomance tuning to relational schemas and document stores using MySQL and MongoDB for high-throughput applications. Experienced with ACID Transactions, Database Replication and Redis caching layers.
+                            </p>
+                            <div class="pt-1 font-mono text-xs text-warm-muted">
+                                TECH: MySQL, MongoDB, Redis
+                            </div>
+                        </div>
+
+                        <!-- Domain 3: Automated Testing & CI/CD -->
+                        <div class="domain-card space-y-3 pl-4">
+                            <div class="flex items-center justify-between">
+                                <span class="font-mono text-xs text-warm-muted">DOMAIN 03</span>
+                             </div>
+                            <h3 class="font-serif text-2xl text-warm-text dark:text-warm-bg font-semibold">Software Design & Code Quality</h3>
+                            <p class="text-sm text-warm-body dark:text-warm-muted font-sans leading-relaxed">
+                                Writing unit, integration, and end-to-end tests to sustain code coverage. Streamline the software development process by building loosely coupled software components using Design Patterns.
+                            </p>
+                            <div class="pt-1 font-mono text-xs text-warm-muted">
+                                TECH: Pytest, Go Test, Software Design Patterns
+                            </div>
+                        </div>
+
+                        <!-- Domain 4: API Architecture -->
+                        <div class="domain-card space-y-3 pl-4">
+                            <div class="flex items-center justify-between">
+                                <span class="font-mono text-xs text-warm-muted">DOMAIN 04</span>
+                             </div>
+                            <h3 class="font-serif text-2xl text-warm-text dark:text-warm-bg font-semibold"> Automation & System Integration</h3>
+                            <p class="text-sm text-warm-body dark:text-warm-muted font-sans leading-relaxed">
+                                Developing automation scripts to replace manual tasks and streamline data processing. Integrating automation workflow engine into existing legacy system to reduce the human resources,
+                                Implementing event-driven, asynchronous messaging pipelines using RabbitMQ and  Apache Kafka.
+                            </p>
+                            <div class="pt-1 font-mono text-xs text-warm-muted">
+                                TECH: Automation, RabbitMQ, Apache Kafka
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 02 // SELECTED PROJECTS -->
+        <section id="projects" class="border-b border-warm-border dark:border-warm-darkBorder">
+            
+            <div class="p-8 sm:p-10 border-b border-warm-border dark:border-warm-darkBorder font-mono flex items-center justify-between">
+                <div>
+                    <span class="text-xs text-warm-muted tracking-widest uppercase block mb-1">FEATURED WORK</span>
+                    <h2 class="text-3xl text-warm-text dark:text-warm-bg font-serif font-normal">Software Engineering Case Studies</h2>
+                </div>
+                <button onclick="openWorkPage()" class="text-xs text-warm-accent hover:underline font-mono hidden sm:inline uppercase tracking-widest">VIEW WORK ARCHIVE →</button>
+            </div>
+
+            <div class="divide-y divide-warm-border dark:divide-warm-darkBorder">
+                
+                <!-- PROJECT 01 -->
+                <article class="p-8 md:p-12 bg-swiss-grid hover:bg-warm-panel/20 transition-colors">
+                    <div class="grid grid-cols-12 gap-8 lg:gap-12 items-stretch">
+                        
+                        <div class="col-span-12 lg:col-span-4 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-warm-border dark:border-warm-darkBorder pb-8 lg:pb-0 lg:pr-10 font-mono">
+                            <div>
+                                <div class="font-serif text-5xl sm:text-6xl text-warm-muted opacity-60 mb-4 font-normal">01</div>
+                                
+                                <h3 class="font-serif text-3xl sm:text-4xl text-warm-text dark:text-warm-bg uppercase tracking-tight font-medium leading-tight mb-2">
+                                    RT Ticketing System
+                                </h3>
+                                
+                                <p class="text-xs font-sans text-warm-muted uppercase tracking-wider mb-8">
+                                    Event-Driven, High Concurrency System
+                                </p>
+
+                                <div class="space-y-4 pt-4 border-t border-warm-border dark:border-warm-darkBorder text-xs">
+                                    <div class="pb-2 border-b border-warm-border/50 dark:border-warm-darkBorder/50">
+                                        <span class="text-[10px] text-warm-muted uppercase block tracking-widest mb-1">ROLE</span>
+                                        <span class="text-warm-text dark:text-warm-bg font-semibold">Software Engineer</span>
+                                    </div>
+                                    <div>
+                                        <span class="text-[10px] text-warm-muted uppercase block tracking-widest mb-1">TECH</span>
+                                        <span class="text-warm-text dark:text-warm-bg">Go, MySQL, Redis, Docker, Apache Kafka</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-8">
+                                <button onclick="openProjectPage('taskrelay')" class="bg-warm-text text-warm-bg dark:bg-warm-bg dark:text-warm-text px-6 py-3.5 text-xs uppercase tracking-widest hover:bg-warm-accent dark:hover:bg-warm-accent dark:hover:text-white transition-colors w-full sm:w-auto font-medium flex items-center justify-between gap-3 group">
+                                    <span>VIEW FULL PROJECT DETAILS</span>
+                                    <span class="group-hover:translate-x-1 transition-transform">→</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="col-span-12 lg:col-span-8 flex flex-col justify-center relative min-h-[360px]">
+                            <div class="p-6 md:p-8 border border-warm-border dark:border-warm-darkBorder bg-warm-panel/60 dark:bg-warm-darkPanel/60 relative overflow-hidden">
+                                
+                                <!-- <div class="text-[10px] font-mono text-warm-muted uppercase tracking-widest mb-4 flex justify-between">
+                                    <span>SYSTEM ARCHITECTURE DIAGRAM (V.1.2)</span>
+                                    <span>CONCURRENCY PIPELINE</span>
+                                </div> -->
+
+                                <div class="w-full h-auto text-warm-text dark:text-warm-bg my-2">
+                                    <img src="./rt.png" alt="" srcset="">
+                                </div>
+
+                                <div class="mt-4 p-5 bg-warm-bg dark:bg-warm-darkBg border border-warm-border dark:border-warm-darkBorder shadow-sm font-sans text-xs sm:text-sm text-warm-body dark:text-warm-muted leading-relaxed">
+                                    Delivered Network Operation Center (NOC) Ticket Automation End to End Workflow features including Automation Decision Workflow Engine, event streaming via Kafka to other integrated systems. Support and assist through the Development, SIT, QA, UAT and Production enviroments.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </article>
+
+                <!-- PROJECT 02 -->
+                <!-- <article class="p-8 md:p-12 bg-swiss-grid hover:bg-warm-panel/20 transition-colors">
+                    <div class="grid grid-cols-12 gap-8 lg:gap-12 items-stretch">
+                        
+                        <div class="col-span-12 lg:col-span-4 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-warm-border dark:border-warm-darkBorder pb-8 lg:pb-0 lg:pr-10 font-mono">
+                            <div>
+                                <div class="font-serif text-5xl sm:text-6xl text-warm-muted opacity-60 mb-4 font-normal">02</div>
+                                
+                                <h3 class="font-serif text-3xl sm:text-4xl text-warm-text dark:text-warm-bg uppercase tracking-tight font-medium leading-tight mb-2">
+                                    Metrics & Audit Portal
+                                </h3>
+                                
+                                <p class="text-xs font-sans text-warm-muted uppercase tracking-wider mb-8">
+                                    Internal Observability & Rate Portal
+                                </p>
+
+                                <div class="space-y-4 pt-4 border-t border-warm-border dark:border-warm-darkBorder text-xs">
+                                    <div class="pb-2 border-b border-warm-border/50 dark:border-warm-darkBorder/50">
+                                        <span class="text-[10px] text-warm-muted uppercase block tracking-widest mb-1">ROLE</span>
+                                        <span class="text-warm-text dark:text-warm-bg font-semibold">Associate Software Engineer</span>
+                                    </div>
+                                    <div>
+                                        <span class="text-[10px] text-warm-muted uppercase block tracking-widest mb-1">TECH</span>
+                                        <span class="text-warm-text dark:text-warm-bg">TypeScript, React, Node.js, Express, Tailwind</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-8">
+                                <button onclick="openProjectPage('metrics')" class="bg-warm-text text-warm-bg dark:bg-warm-bg dark:text-warm-text px-6 py-3.5 text-xs uppercase tracking-widest hover:bg-warm-accent dark:hover:bg-warm-accent dark:hover:text-white transition-colors w-full sm:w-auto font-medium flex items-center justify-between gap-3 group">
+                                    <span>VIEW FULL PROJECT DETAILS</span>
+                                    <span class="group-hover:translate-x-1 transition-transform">→</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="col-span-12 lg:col-span-8 flex flex-col justify-center relative min-h-[360px]">
+                            <div class="p-6 md:p-8 border border-warm-border dark:border-warm-darkBorder bg-warm-panel/60 dark:bg-warm-darkPanel/60 relative overflow-hidden">
+                                
+                                <div class="text-[10px] font-mono text-warm-muted uppercase tracking-widest mb-4 flex justify-between">
+                                    <span>SYSTEM ARCHITECTURE DIAGRAM (V.2.0)</span>
+                                    <span>OBSERVABILITY GATEWAY</span>
+                                </div>
+
+                                <svg viewBox="0 0 600 240" class="w-full h-auto text-warm-text dark:text-warm-bg my-2">
+                                    <line x1="80" y1="120" x2="200" y2="120" stroke="currentColor" stroke-width="1.5" />
+                                    <line x1="320" y1="120" x2="440" y2="120" stroke="currentColor" stroke-width="1.5" />
+
+                                    <rect x="20" y="85" width="80" height="70" fill="none" stroke="currentColor" stroke-width="1.5" />
+                                    <text x="60" y="120" font-family="Space Mono" font-size="10" fill="currentColor" text-anchor="middle">CLIENT REACT</text>
+
+                                    <rect x="200" y="85" width="120" height="70" fill="none" stroke="currentColor" stroke-width="2" />
+                                    <text x="260" y="115" font-family="Space Mono" font-size="10" fill="currentColor" text-anchor="middle">AUDIT GATEWAY</text>
+                                    <text x="260" y="132" font-family="Space Mono" font-size="8" fill="#887d72" text-anchor="middle">EXPRESS / TS</text>
+
+                                    <rect x="440" y="85" width="120" height="70" fill="none" stroke="currentColor" stroke-width="1.5" />
+                                    <text x="500" y="115" font-family="Space Mono" font-size="10" fill="currentColor" text-anchor="middle">ANALYTICS DB</text>
+                                    <text x="500" y="132" font-family="Space Mono" font-size="8" fill="#887d72" text-anchor="middle">POSTGRESQL</text>
+                                </svg>
+
+                                <div class="mt-4 p-5 bg-warm-bg dark:bg-warm-darkBg border border-warm-border dark:border-warm-darkBorder shadow-sm font-sans text-xs sm:text-sm text-warm-body dark:text-warm-muted leading-relaxed">
+                                    Developed an internal developer gateway tracking API key quotas and rate-limiting metrics, reducing internal query load time by 60% through optimistic client-side caching.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </article> -->
+
+                <!-- PROJECT 03 -->
+                <!-- <article class="p-8 md:p-12 bg-swiss-grid hover:bg-warm-panel/20 transition-colors">
+                    <div class="grid grid-cols-12 gap-8 lg:gap-12 items-stretch">
+                        
+                        <div class="col-span-12 lg:col-span-4 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-warm-border dark:border-warm-darkBorder pb-8 lg:pb-0 lg:pr-10 font-mono">
+                            <div>
+                                <div class="font-serif text-5xl sm:text-6xl text-warm-muted opacity-60 mb-4 font-normal">03</div>
+                                
+                                <h3 class="font-serif text-3xl sm:text-4xl text-warm-text dark:text-warm-bg uppercase tracking-tight font-medium leading-tight mb-2">
+                                    SchemaSync CLI
+                                </h3>
+                                
+                                <p class="text-xs font-sans text-warm-muted uppercase tracking-wider mb-8">
+                                    Database Migration & Verification CLI
+                                </p>
+
+                                <div class="space-y-4 pt-4 border-t border-warm-border dark:border-warm-darkBorder text-xs">
+                                    <div class="pb-2 border-b border-warm-border/50 dark:border-warm-darkBorder/50">
+                                        <span class="text-[10px] text-warm-muted uppercase block tracking-widest mb-1">ROLE</span>
+                                        <span class="text-warm-text dark:text-warm-bg font-semibold">Author & Maintainer</span>
+                                    </div>
+                                    <div>
+                                        <span class="text-[10px] text-warm-muted uppercase block tracking-widest mb-1">TECH</span>
+                                        <span class="text-warm-text dark:text-warm-bg">Python 3.11, Click, Psycopg3, Pytest</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-8">
+                                <button onclick="openProjectPage('schemasync')" class="bg-warm-text text-warm-bg dark:bg-warm-bg dark:text-warm-text px-6 py-3.5 text-xs uppercase tracking-widest hover:bg-warm-accent dark:hover:bg-warm-accent dark:hover:text-white transition-colors w-full sm:w-auto font-medium flex items-center justify-between gap-3 group">
+                                    <span>VIEW FULL PROJECT DETAILS</span>
+                                    <span class="group-hover:translate-x-1 transition-transform">→</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="col-span-12 lg:col-span-8 flex flex-col justify-center relative min-h-[360px]">
+                            <div class="p-6 md:p-8 border border-warm-border dark:border-warm-darkBorder bg-warm-panel/60 dark:bg-warm-darkPanel/60 relative overflow-hidden">
+                                
+                                <div class="text-[10px] font-mono text-warm-muted uppercase tracking-widest mb-4 flex justify-between">
+                                    <span>SYSTEM ARCHITECTURE DIAGRAM (V.1.0)</span>
+                                    <span>CLI DRY-RUN PIPELINE</span>
+                                </div>
+
+                                <svg viewBox="0 0 600 240" class="w-full h-auto text-warm-text dark:text-warm-bg my-2">
+                                    <line x1="100" y1="120" x2="220" y2="120" stroke="currentColor" stroke-width="1.5" />
+                                    <line x1="340" y1="120" x2="460" y2="120" stroke="currentColor" stroke-width="1.5" />
+
+                                    <rect x="20" y="85" width="80" height="70" fill="none" stroke="currentColor" stroke-width="1.5" />
+                                    <text x="60" y="120" font-family="Space Mono" font-size="10" fill="currentColor" text-anchor="middle">SQL FILES</text>
+
+                                    <rect x="220" y="85" width="120" height="70" fill="none" stroke="currentColor" stroke-width="2" />
+                                    <text x="280" y="115" font-family="Space Mono" font-size="10" fill="currentColor" text-anchor="middle">CLI VALIDATOR</text>
+                                    <text x="280" y="132" font-family="Space Mono" font-size="8" fill="#887d72" text-anchor="middle">DRY-RUN ENGINE</text>
+
+                                    <rect x="460" y="85" width="100" height="70" fill="none" stroke="currentColor" stroke-width="1.5" />
+                                    <text x="510" y="120" font-family="Space Mono" font-size="10" fill="currentColor" text-anchor="middle">TARGET DB</text>
+                                </svg>
+
+                                <div class="mt-4 p-5 bg-warm-bg dark:bg-warm-darkBg border border-warm-border dark:border-warm-darkBorder shadow-sm font-sans text-xs sm:text-sm text-warm-body dark:text-warm-muted leading-relaxed">
+                                    Created a deterministic Python CLI tool that parses raw SQL migration scripts and executes dry-run validation against local PostgreSQL staging instances prior to CI deployment.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </article> -->
+
+            </div>
+        </section>
+
+        <!-- SECTION 03 // CONTACT & CONNECT -->
+        <section id="contact" class="bg-warm-bg dark:bg-warm-darkBg font-mono border-t border-warm-border dark:border-warm-darkBorder">
+            <div class="grid grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-warm-border dark:divide-warm-darkBorder">
+                
+                <!-- Direct Reachout Form -->
+                <div class="col-span-12 lg:col-span-7 p-8 md:p-12 space-y-8">
+                    <div>
+                        <span class="text-xs text-warm-muted tracking-widest uppercase block mb-1">04 / GET IN TOUCH</span>
+                        <h2 class="text-3xl sm:text-4xl font-serif text-warm-text dark:text-warm-bg font-normal">
+                            To build up a challenging career and to work with full dedication to achieve the organization's goal.
+                        </h2>
+                        <p class="text-xs text-warm-body dark:text-warm-muted font-sans mt-3 max-w-lg leading-relaxed">
+                            Open to Software Engineering opportunities.
+                        </p>
+                    </div>
+
+                    <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-5 pt-2">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-[10px] text-warm-muted uppercase mb-2">YOUR NAME *</label>
+                                <input type="text" required placeholder="" class="w-full bg-warm-panel dark:bg-warm-darkPanel border border-warm-border dark:border-warm-darkBorder p-3 text-xs text-warm-text dark:text-warm-bg focus:outline-none focus:border-warm-text dark:focus:border-warm-bg">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] text-warm-muted uppercase mb-2">EMAIL ADDRESS *</label>
+                                <input type="email" required placeholder="" class="w-full bg-warm-panel dark:bg-warm-darkPanel border border-warm-border dark:border-warm-darkBorder p-3 text-xs text-warm-text dark:text-warm-bg focus:outline-none focus:border-warm-text dark:focus:border-warm-bg">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] text-warm-muted uppercase mb-2">MESSAGE / INQUIRY *</label>
+                            <textarea rows="4" required placeholder="" class="w-full bg-warm-panel dark:bg-warm-darkPanel border border-warm-border dark:border-warm-darkBorder p-3 text-xs text-warm-text dark:text-warm-bg focus:outline-none focus:border-warm-text dark:focus:border-warm-bg"></textarea>
+                        </div>
+
+                        <button type="submit" class="bg-warm-text text-warm-bg dark:bg-warm-bg dark:text-warm-text px-8 py-3.5 text-xs uppercase tracking-widest font-medium hover:bg-warm-accent dark:hover:bg-warm-accent dark:hover:text-white transition-colors">
+                            SEND MESSAGE
+                        </button>
+                    </form>
+
+                    <div id="formNotification" class="hidden p-4 border border-emerald-700 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300 text-xs font-mono">
+                        MESSAGE RECEIVED. THANK YOU FOR REACHING OUT!
+                    </div>
+                </div>
+
+                <!-- Direct Connectivity -->
+                <div class="col-span-12 lg:col-span-5 p-8 md:p-12 bg-warm-panel/50 dark:bg-warm-darkPanel/50 space-y-8 flex flex-col justify-between">
+                    <div class="space-y-6">
+                        <span class="text-xs text-warm-muted tracking-widest uppercase block">DIRECT CONNECTIVITY</span>
+
+                        <div class="space-y-3 text-xs">
+                            <div class="border-b border-warm-border dark:border-warm-darkBorder py-2.5 flex justify-between items-center">
+                                <span class="text-warm-muted">EMAIL</span>
+                                <a href="mailto:maythinkyi2003@gmail.com" class="text-warm-text dark:text-warm-bg hover:underline font-medium">maythinkyi2003@gmail.com, maythin.kyi@frontiir.net</a>
+                            </div>
+                            <div class="border-b border-warm-border dark:border-warm-darkBorder py-2.5 flex justify-between items-center">
+                                <span class="text-warm-muted">GITHUB</span>
+                                <a href="https://github.com/maythinkyi" target="_blank" rel="noopener" class="text-warm-text dark:text-warm-bg hover:underline font-medium">github.com/maythinkyi</a>
+                            </div>
+                            <div class="border-b border-warm-border dark:border-warm-darkBorder py-2.5 flex justify-between items-center">
+                                <span class="text-warm-muted">LINKEDIN</span>
+                                <a href="https://www.linkedin.com/in/may-thin-kyi-023b861b6/" target="_blank" rel="noopener" class="text-warm-text dark:text-warm-bg hover:underline font-medium">linkedin.com/maythinkyi</a>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 space-y-2">
+                            <span class="text-[10px] text-warm-muted uppercase block">AVAILABILITY</span>
+                            <div class="p-3 bg-warm-bg dark:bg-warm-darkBg border border-warm-border dark:border-warm-darkBorder text-xs flex items-center gap-3">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                <span>OPEN TO MID-SENIOR SWE ROLES</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-8 border-t border-warm-border dark:border-warm-darkBorder text-[10px] text-warm-muted flex justify-between">
+                        <span>© 2026 May Thin Kyi</span>
+                        <!-- <span>EDITORIAL SWISS STYLE</span> -->
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <!-- DEDICATED ABOUT PAGE VIEW (SPA ROUTE) -->
+    <div id="aboutView" class="hidden max-w-[1400px] mx-auto border-x border-warm-border dark:border-warm-darkBorder w-full flex-grow fade-in bg-warm-bg dark:bg-warm-darkBg">
+        
+        <!-- Breadcrumb & Top Bar Navigation -->
+        <div class="p-6 md:p-8 border-b border-warm-border dark:border-warm-darkBorder font-mono text-xs flex flex-wrap items-center justify-between gap-4 bg-warm-panel/30 dark:bg-warm-darkPanel/30">
+            <button onclick="navigateToHome()" class="flex items-center gap-2 text-warm-text dark:text-warm-bg hover:text-warm-accent dark:hover:text-warm-accent transition-colors border border-warm-border dark:border-warm-darkBorder px-4 py-2 bg-warm-bg dark:bg-warm-darkBg">
+                <span>←</span>
+                <span>RETURN TO HOME</span>
+            </button>
+
+            <div class="flex items-center gap-4 text-warm-muted text-[11px] tracking-widest uppercase">
+                <span>ENGINEERING PROFILE</span>
+                <span>/</span>
+                <span class="text-warm-text dark:text-warm-bg font-bold">May Thin Kyi</span>
+            </div>
+        </div>
+
+        <!-- Hero Header Statement -->
+        <div class="p-8 md:p-14 lg:p-16 border-b border-warm-border dark:border-warm-darkBorder bg-swiss-grid">
+            <span class="font-mono text-xs text-warm-muted tracking-widest uppercase block mb-3">01 / ABOUT & CAREER HISTORY</span>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-serif text-warm-text dark:text-warm-bg font-normal tracking-tight mb-6">
+                Timeline and Career History
+            </h1>
+            <p class="text-warm-body dark:text-warm-muted text-base sm:text-lg max-w-3xl font-sans font-normal leading-relaxed">
+                I work across the full feature software development lifecycle from architectural decisions, software design and implementation through Development, SIT, QA, UAT, Production evniroments.
+            </p>
+        </div>
+
+        <!-- Specialization Breakdown Section -->
+        <div class="p-8 md:p-12 border-b border-warm-border dark:border-warm-darkBorder font-sans">
+            <span class="font-mono text-xs text-warm-muted tracking-widest uppercase block mb-8">PRIMARY TECHNICAL DOMAINS</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                
+                <div class="p-6 border border-warm-border dark:border-warm-darkBorder bg-warm-panel/30 dark:bg-warm-darkPanel/30 space-y-3">
+                    <span class="font-mono text-xs text-warm-muted">DOMAIN 01</span>
+                     <h3 class="font-serif text-2xl text-warm-text dark:text-warm-bg font-semibold">Software Development</h3>
+                            <p class="text-sm text-warm-body dark:text-warm-muted font-sans leading-relaxed">
+                                Experienced in developing and enhancing software solutions, including 
+                                legacy codebases, I focus on efficient data handling and implementing best practices.
+                            </p>
+                </div>
+
+                <div class="p-6 border border-warm-border dark:border-warm-darkBorder bg-warm-panel/30 dark:bg-warm-darkPanel/30 space-y-3">
+                    <span class="font-mono text-xs text-warm-muted">DOMAIN 02</span>
+                    <h3 class="font-serif text-2xl text-warm-text dark:text-warm-bg font-semibold">Database Integration</h3>
+                            <p class="text-sm text-warm-body dark:text-warm-muted font-sans leading-relaxed">
+                                Designing, modeling, and query perfomance tuning to relational schemas and document stores using MySQL and MongoDB for high-throughput applications. Experienced with ACID Transactions, Database Replication and Redis caching layers.
+                            </p>
+                </div>
+
+                <div class="p-6 border border-warm-border dark:border-warm-darkBorder bg-warm-panel/30 dark:bg-warm-darkPanel/30 space-y-3">
+                    <span class="font-mono text-xs text-warm-muted">DOMAIN 03</span>
+                    <h3 class="font-serif text-2xl text-warm-text dark:text-warm-bg font-semibold">Software Design & Code Quality</h3>
+                            <p class="text-sm text-warm-body dark:text-warm-muted font-sans leading-relaxed">
+                                Writing unit, integration, and end-to-end tests to sustain code coverage. Streamline the software development process by building loosely coupled software components using Design Patterns.
+                            </p>
+                </div>
+
+                <div class="p-6 border border-warm-border dark:border-warm-darkBorder bg-warm-panel/30 dark:bg-warm-darkPanel/30 space-y-3">
+                    <span class="font-mono text-xs text-warm-muted">DOMAIN 04</span>
+                    <h3 class="font-serif text-2xl text-warm-text dark:text-warm-bg font-semibold"> Automation & System Integration</h3>
+                            <p class="text-sm text-warm-body dark:text-warm-muted font-sans leading-relaxed">
+                                Developing automation scripts to replace manual tasks and streamline data processing. Integrating automation workflow engine into existing legacy system to reduce the human resources,
+                                Implementing event-driven, asynchronous messaging pipelines using RabbitMQ and  Apache Kafka.
+                            </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Career Timeline & Detailed Responsibilities -->
+        <div class="p-8 md:p-12 border-b border-warm-border dark:border-warm-darkBorder font-sans">
+            <span class="font-mono text-xs text-warm-muted tracking-widest uppercase block mb-10">CAREER TIMELINE & RESPONSIBILITIES</span>
+            
+            <div class="space-y-12">
+                
+                <!-- Position 1 -->
+                <div class="grid grid-cols-12 gap-6 pb-12 border-b border-warm-border dark:border-warm-darkBorder">
+                    <div class="col-span-12 lg:col-span-4 font-mono">
+                        <span class="text-xs text-warm-accent font-semibold block">2025 Nov — PRESENT</span>
+                        <h2 class="text-2xl font-serif text-warm-text dark:text-warm-bg font-bold mt-1">Associate Software Engineer</h2>
+                        <span class="text-sm text-warm-muted block mt-1">Frontiir - R&D Department / Controller & Platform Systems Divison</span>
+                    </div>
+                    
+                    <div class="col-span-12 lg:col-span-8 space-y-4">
+                        <p class="text-sm sm:text-md text-warm-body dark:text-warm-muted leading-relaxed">
+                           First Software Engineering career at Myanmar’s Biggest ISP, gaining hands-on domain knowledge in Telecom/ISP industry, Operational Support Systems (OSS) controllers, and core platform products.
+Working at OSS Platform and Controller Division to design, develop, and maintain high-scale telecom operation support software and controller systems.
+                        </p>
+                        
+                        <div class="space-y-2 font-mono text-xs">
+                            <span class="text-xs text-warm-muted uppercase tracking-widest block font-bold">KEY RESPONSIBILITIES & DELIVERABLES:</span>
+                            <ul class="space-y-2 list-disc list-inside text-warm-body dark:text-warm-muted font-sans text-sm">
+                                <li>Experienced in RT Ticketing System, Operation Support Systems (OSS), automation CLI tools for telecom/ISP Company.</li>
+              <li>I worked on multiple medium-sized system automation features, decision worflow engine, scheduled automation tasks, new module integration and ensuring smooth system integration.</li>
+             <li> Developed small to medium size feature enhancements across existing systems, improving usability and aligning with evolving business requirements.</li>
+             <li> Actively involved in bug fixing and enhancing feature improvements, ensuring better user experience, system stability, and performance consistency.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Position 2 -->
+                <!-- <div class="grid grid-cols-12 gap-6 pb-12 border-b border-warm-border dark:border-warm-darkBorder">
+                    <div class="col-span-12 lg:col-span-4 font-mono">
+                        <span class="text-xs text-warm-muted block">2023 — 2024</span>
+                        <h2 class="text-2xl font-serif text-warm-text dark:text-warm-bg font-bold mt-1">Junior Backend Developer</h2>
+                        <span class="text-xs text-warm-muted block mt-1">DataSync Solutions // Platform Engineering</span>
+                    </div>
+                    
+                    <div class="col-span-12 lg:col-span-8 space-y-4">
+                        <p class="text-xs sm:text-sm text-warm-body dark:text-warm-muted leading-relaxed">
+                            Contributed to internal developer tooling, REST API endpoints, and database query optimizations for enterprise data synchronization software.
+                        </p>
+                        
+                        <div class="space-y-2 font-mono text-xs">
+                            <span class="text-[10px] text-warm-muted uppercase tracking-widest block font-bold">KEY RESPONSIBILITIES & DELIVERABLES:</span>
+                            <ul class="space-y-2 list-disc list-inside text-warm-body dark:text-warm-muted font-sans text-xs">
+                                <li>Optimized slow PostgreSQL SQL queries and added composite indexing, reducing p95 latency from 140ms to 22ms.</li>
+                                <li>Built internal metrics and audit dashboard using Node.js, Express, and React for team API usage tracking.</li>
+                                <li>Refactored legacy synchronous API endpoints into queue-backed asynchronous background jobs using Redis.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div> -->
+
+                <!-- Position 3 -->
+                <!-- <div class="grid grid-cols-12 gap-6">
+                    <div class="col-span-12 lg:col-span-4 font-mono">
+                        <span class="text-xs text-warm-muted block">2022 — 2023</span>
+                        <h2 class="text-2xl font-serif text-warm-text dark:text-warm-bg font-bold mt-1">Software Engineering Intern</h2>
+                        <span class="text-xs text-warm-muted block mt-1">Enterprise Labs Inc.</span>
+                    </div>
+                    
+                    <div class="col-span-12 lg:col-span-8 space-y-4">
+                        <p class="text-xs sm:text-sm text-warm-body dark:text-warm-muted leading-relaxed">
+                            Assisted senior backend engineers with unit testing, bug fixing, automated CI pipeline configuration, and API documentation.
+                        </p>
+                        
+                        <div class="space-y-2 font-mono text-xs">
+                            <span class="text-[10px] text-warm-muted uppercase tracking-widest block font-bold">KEY RESPONSIBILITIES & DELIVERABLES:</span>
+                            <ul class="space-y-2 list-disc list-inside text-warm-body dark:text-warm-muted font-sans text-xs">
+                                <li>Integrated automated linting and Pytest suites into GitHub Actions workflows to block buggy PRs.</li>
+                                <li>Documented system API endpoints using OpenAPI / Swagger specifications.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div> -->
+
+            </div>
+        </div>
+
+        <!-- Education & Certifications -->
+        <div class="p-8 md:p-12 bg-swiss-grid font-mono">
+            <span class="text-xs text-warm-muted tracking-widest uppercase block mb-6">EDUCATION & STANDARDS</span>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="p-5 border border-warm-border dark:border-warm-darkBorder bg-warm-bg dark:bg-warm-darkBg">
+                    <span class="text-[10px] text-warm-muted uppercase block mb-1">DEGREE</span>
+                    <h4 class="font-serif text-lg font-bold text-warm-text dark:text-warm-bg">B.S. in Computer Science</h4>
+                    <p class="text-xs text-warm-body dark:text-warm-muted font-sans mt-2">Focus on Data Structures, Algorithms, Operating Systems, and Database Systems.</p>
+                </div>
+                <div class="p-5 border border-warm-border dark:border-warm-darkBorder bg-warm-bg dark:bg-warm-darkBg">
+                    <span class="text-[10px] text-warm-muted uppercase block mb-1">METHODOLOGY</span>
+                    <h4 class="font-serif text-lg font-bold text-warm-text dark:text-warm-bg">Lifelong Learning</h4>
+                    <p class="text-xs text-warm-body dark:text-warm-muted font-sans mt-2">Software Architecture, System Design and Distributed Systems.</p>
+                </div>
+                <div class="p-5 border border-warm-border dark:border-warm-darkBorder bg-warm-bg dark:bg-warm-darkBg">
+                    <span class="text-[10px] text-warm-muted uppercase block mb-1">AVAILABILITY</span>
+                    <h4 class="font-serif text-sm font-bold text-warm-text dark:text-warm-bg">OPEN TO MID-SENIOR SWE ROLES</h4>
+                    <p class="text-xs text-warm-body dark:text-warm-muted font-sans mt-2">Available for full-time roles.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- DEDICATED WORK ARCHIVE PAGE VIEW (SPA ROUTE) -->
+    <div id="workView" class="hidden max-w-[1400px] mx-auto border-x border-warm-border dark:border-warm-darkBorder w-full flex-grow fade-in bg-warm-bg dark:bg-warm-darkBg">
+        
+        <!-- Breadcrumb & Top Bar Navigation -->
+        <div class="p-6 md:p-8 border-b border-warm-border dark:border-warm-darkBorder font-mono text-xs flex flex-wrap items-center justify-between gap-4 bg-warm-panel/30 dark:bg-warm-darkPanel/30">
+            <button onclick="navigateToHome()" class="flex items-center gap-2 text-warm-text dark:text-warm-bg hover:text-warm-accent dark:hover:text-warm-accent transition-colors border border-warm-border dark:border-warm-darkBorder px-4 py-2 bg-warm-bg dark:bg-warm-darkBg">
+                <span>←</span>
+                <span>RETURN TO HOME</span>
+            </button>
+
+            <div class="flex items-center gap-4 text-warm-muted text-[11px] tracking-widest uppercase">
+                <span>WORK ARCHIVE</span>
+                <span>/</span>
+                <span class="text-warm-text dark:text-warm-bg font-bold">02. SELECTED CASE STUDIES</span>
+            </div>
+        </div>
+
+        <!-- Hero Header Statement -->
+        <div class="p-8 md:p-14 lg:p-16 border-b border-warm-border dark:border-warm-darkBorder bg-swiss-grid">
+            <span class="font-mono text-xs text-warm-muted tracking-widest uppercase block mb-3">02 / WORK & PRODUCTION SYSTEMS</span>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-serif text-warm-text dark:text-warm-bg font-normal tracking-tight mb-6">
+                Engineered Systems 
+            </h1>
+            <p class="text-warm-body dark:text-warm-muted text-base sm:text-lg max-w-3xl font-sans font-normal leading-relaxed">
+                A comprehensive archive of work projects.
+            </p>
+        </div>
+
+        <!-- Work Items Grid / List -->
+        <div class="divide-y divide-warm-border dark:divide-warm-darkBorder">
+            
+            <!-- WORK ITEM 01 -->
+              <article class="p-8 md:p-12 bg-swiss-grid hover:bg-warm-panel/20 transition-colors">
+                    <div class="grid grid-cols-12 gap-8 lg:gap-12 items-stretch">
+                        
+                        <div class="col-span-12 lg:col-span-4 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-warm-border dark:border-warm-darkBorder pb-8 lg:pb-0 lg:pr-10 font-mono">
+                            <div>
+                                <div class="font-serif text-5xl sm:text-6xl text-warm-muted opacity-60 mb-4 font-normal">01</div>
+                                
+                                <h3 class="font-serif text-3xl sm:text-4xl text-warm-text dark:text-warm-bg uppercase tracking-tight font-medium leading-tight mb-2">
+                                    RT Ticketing System
+                                </h3>
+                                
+                                <p class="text-xs font-sans text-warm-muted uppercase tracking-wider mb-8">
+                                    Event-Driven, High Concurrency System
+                                </p>
+
+                                <div class="space-y-4 pt-4 border-t border-warm-border dark:border-warm-darkBorder text-xs">
+                                    <div class="pb-2 border-b border-warm-border/50 dark:border-warm-darkBorder/50">
+                                        <span class="text-[10px] text-warm-muted uppercase block tracking-widest mb-1">ROLE</span>
+                                        <span class="text-warm-text dark:text-warm-bg font-semibold">Software Engineer</span>
+                                    </div>
+                                    <div>
+                                        <span class="text-[10px] text-warm-muted uppercase block tracking-widest mb-1">TECH</span>
+                                        <span class="text-warm-text dark:text-warm-bg">Go, MySQL, Redis, Docker, Apache Kafka</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-8">
+                                <button onclick="openProjectPage('taskrelay')" class="bg-warm-text text-warm-bg dark:bg-warm-bg dark:text-warm-text px-6 py-3.5 text-xs uppercase tracking-widest hover:bg-warm-accent dark:hover:bg-warm-accent dark:hover:text-white transition-colors w-full sm:w-auto font-medium flex items-center justify-between gap-3 group">
+                                    <span>VIEW FULL PROJECT DETAILS</span>
+                                    <span class="group-hover:translate-x-1 transition-transform">→</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="col-span-12 lg:col-span-8 flex flex-col justify-center relative min-h-[360px]">
+                            <div class="p-6 md:p-8 border border-warm-border dark:border-warm-darkBorder bg-warm-panel/60 dark:bg-warm-darkPanel/60 relative overflow-hidden">
+                                
+                                <!-- <div class="text-[10px] font-mono text-warm-muted uppercase tracking-widest mb-4 flex justify-between">
+                                    <span>SYSTEM ARCHITECTURE DIAGRAM (V.1.2)</span>
+                                    <span>CONCURRENCY PIPELINE</span>
+                                </div> -->
+
+                                <div class="w-full h-auto text-warm-text dark:text-warm-bg my-2">
+                                    <img src="./rt.png" alt="" srcset="">
+                                </div>
+
+                                <div class="mt-4 p-5 bg-warm-bg dark:bg-warm-darkBg border border-warm-border dark:border-warm-darkBorder shadow-sm font-sans text-xs sm:text-sm text-warm-body dark:text-warm-muted leading-relaxed">
+                                    Delivered Network Operation Center (NOC) Ticket Automation End to End Workflow features including Automation Decision Workflow Engine, event streaming via Kafka to other integrated systems. Support and assist through the Development, SIT, QA, UAT and Production enviroments.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </article>
+           <!-- WORK ITEM 02 -->
+            <!-- <article class="p-8 md:p-12 bg-swiss-grid hover:bg-warm-panel/20 transition-colors">
+                <div class="grid grid-cols-12 gap-8 lg:gap-12 items-stretch">
+                    <div class="col-span-12 lg:col-span-5 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-warm-border dark:border-warm-darkBorder pb-8 lg:pb-0 lg:pr-10 font-mono">
+                        <div>
+                            <div class="font-serif text-5xl text-warm-muted opacity-60 mb-2 font-normal">02</div>
+                            <h3 class="font-serif text-3xl sm:text-4xl text-warm-text dark:text-warm-bg uppercase font-medium leading-tight mb-2">Metrics & Audit Portal</h3>
+                            <p class="text-xs font-sans text-warm-muted uppercase tracking-wider mb-6">Internal Observability & Rate Portal</p>
+                            <p class="text-xs text-warm-body dark:text-warm-muted font-sans leading-relaxed mb-6">
+                                Developed an internal developer gateway tracking API key quotas and rate-limiting metrics, reducing internal query load time by 60% through optimistic client-side caching.
+                            </p>
+                            <div class="space-y-2 pt-4 border-t border-warm-border dark:border-warm-darkBorder text-xs">
+                                <div><span class="text-[10px] text-warm-muted uppercase tracking-widest">ROLE: </span><span class="text-warm-text dark:text-warm-bg font-semibold">Associate Software Engineer</span></div>
+                                <div><span class="text-[10px] text-warm-muted uppercase tracking-widest">TECH: </span><span class="text-warm-text dark:text-warm-bg">TypeScript, React, Node.js, Express</span></div>
+                            </div>
+                        </div>
+                        <div class="pt-8">
+                            <button onclick="openProjectPage('metrics')" class="bg-warm-text text-warm-bg dark:bg-warm-bg dark:text-warm-text px-6 py-3.5 text-xs uppercase tracking-widest hover:bg-warm-accent dark:hover:bg-warm-accent dark:hover:text-white transition-colors w-full font-medium flex items-center justify-between gap-3 group">
+                                <span>VIEW DETAILED CASE STUDY</span>
+                                <span class="group-hover:translate-x-1 transition-transform">→</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="col-span-12 lg:col-span-7 flex flex-col justify-center">
+                        <div class="p-6 border border-warm-border dark:border-warm-darkBorder bg-warm-panel/60 dark:bg-warm-darkPanel/60 font-mono">
+                            <div class="text-[10px] text-warm-muted uppercase tracking-widest mb-4 flex justify-between">
+                                <span>SYSTEM METRICS OVERVIEW</span>
+                                <span>PRODUCTION VERIFIED</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 mb-4 text-xs">
+                                <div class="p-3.5 bg-warm-bg dark:bg-warm-darkBg border border-warm-border dark:border-warm-darkBorder">
+                                    <span class="text-[10px] text-warm-muted block mb-1">INITIAL LOAD</span>
+                                    <span class="text-xl font-bold text-warm-text dark:text-warm-bg">0.72 sec</span>
+                                </div>
+                                <div class="p-3.5 bg-warm-bg dark:bg-warm-darkBg border border-warm-border dark:border-warm-darkBorder">
+                                    <span class="text-[10px] text-warm-muted block mb-1">QUERY LATENCY</span>
+                                    <span class="text-xl font-bold text-warm-text dark:text-warm-bg">&lt; 22ms</span>
+                                </div>
+                            </div>
+                            <div class="text-xs text-warm-body dark:text-warm-muted font-sans leading-relaxed">
+                                Observability architecture for tracking rate limits, audit trails, and non-blocking asynchronous request processing.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article> -->
+
+            <!-- WORK ITEM 03 -->
+            <!-- <article class="p-8 md:p-12 bg-swiss-grid hover:bg-warm-panel/20 transition-colors">
+                <div class="grid grid-cols-12 gap-8 lg:gap-12 items-stretch">
+                    <div class="col-span-12 lg:col-span-5 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-warm-border dark:border-warm-darkBorder pb-8 lg:pb-0 lg:pr-10 font-mono">
+                        <div>
+                            <div class="font-serif text-5xl text-warm-muted opacity-60 mb-2 font-normal">03</div>
+                            <h3 class="font-serif text-3xl sm:text-4xl text-warm-text dark:text-warm-bg uppercase font-medium leading-tight mb-2">SchemaSync CLI</h3>
+                            <p class="text-xs font-sans text-warm-muted uppercase tracking-wider mb-6">Database Migration & Verification CLI</p>
+                            <p class="text-xs text-warm-body dark:text-warm-muted font-sans leading-relaxed mb-6">
+                                Created a deterministic Python CLI tool that parses raw SQL migration scripts and executes dry-run validation against local PostgreSQL staging instances prior to CI deployment.
+                            </p>
+                            <div class="space-y-2 pt-4 border-t border-warm-border dark:border-warm-darkBorder text-xs">
+                                <div><span class="text-[10px] text-warm-muted uppercase tracking-widest">ROLE: </span><span class="text-warm-text dark:text-warm-bg font-semibold">Author & Maintainer</span></div>
+                                <div><span class="text-[10px] text-warm-muted uppercase tracking-widest">TECH: </span><span class="text-warm-text dark:text-warm-bg">Python 3.11, Click, Psycopg3, Pytest</span></div>
+                            </div>
+                        </div>
+                        <div class="pt-8">
+                            <button onclick="openProjectPage('schemasync')" class="bg-warm-text text-warm-bg dark:bg-warm-bg dark:text-warm-text px-6 py-3.5 text-xs uppercase tracking-widest hover:bg-warm-accent dark:hover:bg-warm-accent dark:hover:text-white transition-colors w-full font-medium flex items-center justify-between gap-3 group">
+                                <span>VIEW DETAILED CASE STUDY</span>
+                                <span class="group-hover:translate-x-1 transition-transform">→</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="col-span-12 lg:col-span-7 flex flex-col justify-center">
+                        <div class="p-6 border border-warm-border dark:border-warm-darkBorder bg-warm-panel/60 dark:bg-warm-darkPanel/60 font-mono">
+                            <div class="text-[10px] text-warm-muted uppercase tracking-widest mb-4 flex justify-between">
+                                <span>SYSTEM METRICS OVERVIEW</span>
+                                <span>PRODUCTION VERIFIED</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 mb-4 text-xs">
+                                <div class="p-3.5 bg-warm-bg dark:bg-warm-darkBg border border-warm-border dark:border-warm-darkBorder">
+                                    <span class="text-[10px] text-warm-muted block mb-1">DRY-RUN SPEED</span>
+                                    <span class="text-xl font-bold text-warm-text dark:text-warm-bg">0.14 sec</span>
+                                </div>
+                                <div class="p-3.5 bg-warm-bg dark:bg-warm-darkBg border border-warm-border dark:border-warm-darkBorder">
+                                    <span class="text-[10px] text-warm-muted block mb-1">DRIFT INCIDENTS</span>
+                                    <span class="text-xl font-bold text-warm-text dark:text-warm-bg">0 Incidents</span>
+                                </div>
+                            </div>
+                            <div class="text-xs text-warm-body dark:text-warm-muted font-sans leading-relaxed">
+                                Python DDL AST analysis, Psycopg3 transaction rollback verification, and GitHub Actions CI workflow enforcement.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article> -->
+
+        </div>
+
+    </div>
+
+    <!-- DEDICATED FULL PROJECT DETAILS PAGE VIEW (SPA ROUTE) -->
+    <div id="projectDetailsView" class="hidden max-w-[1400px] mx-auto border-x border-warm-border dark:border-warm-darkBorder w-full flex-grow fade-in bg-warm-bg dark:bg-warm-darkBg">
+        
+        <!-- Breadcrumb & Top Bar Navigation -->
+        <div class="p-6 md:p-8 border-b border-warm-border dark:border-warm-darkBorder font-mono text-xs flex flex-wrap items-center justify-between gap-4 bg-warm-panel/30 dark:bg-warm-darkPanel/30">
+            <button onclick="openWorkPage()" class="flex items-center gap-2 text-warm-text dark:text-warm-bg hover:text-warm-accent dark:hover:text-warm-accent transition-colors border border-warm-border dark:border-warm-darkBorder px-4 py-2 bg-warm-bg dark:bg-warm-darkBg">
+                <span>←</span>
+                <span>BACK TO WORK ARCHIVE</span>
+            </button>
+
+            <div class="flex items-center gap-4 text-warm-muted text-[11px] tracking-widest uppercase">
+                <span id="projViewNavBadge">PROJECT 01 // CASE STUDY</span>
+                <span>/</span>
+                <span id="projViewStatus" class="text-warm-text dark:text-warm-bg font-bold">PRODUCTION VERIFIED</span>
+            </div>
+        </div>
+
+        <!-- Dynamic Container where openProjectPage injects content -->
+        <div id="projectDetailsContainer"></div>
+
+        <!-- Next Project Quick Switch Footer -->
+        <div class="p-8 md:p-12 border-t border-warm-border dark:border-warm-darkBorder font-mono bg-warm-panel/20 dark:bg-warm-darkPanel/20 flex flex-wrap items-center justify-between gap-6">
+            <div>
+                <span class="text-[10px] text-warm-muted uppercase tracking-widest block mb-1">CONTINUE READING</span>
+                <h4 class="font-serif text-xl text-warm-text dark:text-warm-bg font-bold">Explore Next Technical Case Study</h4>
+            </div>
+            <button onclick="openNextProject()" class="bg-warm-text text-warm-bg dark:bg-warm-bg dark:text-warm-text px-6 py-3.5 text-xs uppercase tracking-widest hover:bg-warm-accent dark:hover:bg-warm-accent dark:hover:text-white transition-colors font-medium flex items-center gap-3">
+                <span>NEXT CASE STUDY</span>
+                <span>→</span>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- NEW PAGE 1: DEDICATED WRITING ARCHIVE VIEW (SPA ROUTE) -->
+    <div id="writingView" class="hidden max-w-[1400px] mx-auto border-x border-warm-border dark:border-warm-darkBorder w-full flex-grow fade-in bg-warm-bg dark:bg-warm-darkBg">
+        
+        <!-- Breadcrumb & Top Bar Navigation -->
+        <div class="p-6 md:p-8 border-b border-warm-border dark:border-warm-darkBorder font-mono text-xs flex flex-wrap items-center justify-between gap-4 bg-warm-panel/30 dark:bg-warm-darkPanel/30">
+            <button onclick="navigateToHome()" class="flex items-center gap-2 text-warm-text dark:text-warm-bg hover:text-warm-accent dark:hover:text-warm-accent transition-colors border border-warm-border dark:border-warm-darkBorder px-4 py-2 bg-warm-bg dark:bg-warm-darkBg">
+                <span>←</span>
+                <span>RETURN TO HOME</span>
+            </button>
+
+            <div class="flex items-center gap-4 text-warm-muted text-[11px] tracking-widest uppercase">
+                <span>ENGINEERING ESSAYS & NOTES</span>
+                <span>/</span>
+                <span class="text-warm-text dark:text-warm-bg font-bold">03. WRITING ARCHIVE</span>
+            </div>
+        </div>
+
+        <!-- Hero Header Statement -->
+        <div class="p-8 md:p-14 lg:p-16 border-b border-warm-border dark:border-warm-darkBorder bg-swiss-grid">
+            <span class="font-mono text-xs text-warm-muted tracking-widest uppercase block mb-3">03 / TECHNICAL WRITING & Self Learning</span>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-serif text-warm-text dark:text-warm-bg font-normal tracking-tight mb-6">
+                Writing about my Self Learning Stuff
+            </h1>
+            <p class="text-warm-body dark:text-warm-muted text-base sm:text-lg max-w-3xl font-sans font-normal leading-relaxed">
+                A collection of technical articles, Go concurrency studies, and other guides. Click any writing item to view full markdown-rendered text and interactive schematic diagrams.
+            </p>
+        </div>
+
+        <!-- Writing Items Grid -->
+        <div class="divide-y divide-warm-border dark:divide-warm-darkBorder" id="writingListContainer">
+            <!-- Dynamically populated or static list -->
+        </div>
+
+    </div>
+
+    <!-- NEW PAGE 2: DEDICATED WRITING DETAILS VIEW (SPA ROUTE) -->
+    <div id="writingDetailsView" class="hidden max-w-[1400px] mx-auto border-x border-warm-border dark:border-warm-darkBorder w-full flex-grow fade-in bg-warm-bg dark:bg-warm-darkBg">
+        
+        <!-- Breadcrumb & Top Bar Navigation -->
+        <div class="p-6 md:p-8 border-b border-warm-border dark:border-warm-darkBorder font-mono text-xs flex flex-wrap items-center justify-between gap-4 bg-warm-panel/30 dark:bg-warm-darkPanel/30">
+            <button onclick="openWritingPage()" class="flex items-center gap-2 text-warm-text dark:text-warm-bg hover:text-warm-accent dark:hover:text-warm-accent transition-colors border border-warm-border dark:border-warm-darkBorder px-4 py-2 bg-warm-bg dark:bg-warm-darkBg">
+                <span>←</span>
+                <span>BACK TO WRITING ARCHIVE</span>
+            </button>
+
+            <div class="flex items-center gap-4 text-warm-muted text-[11px] tracking-widest uppercase">
+                <span id="writingViewNavCategory">TECHNICAL ARTICLE</span>
+                <span>/</span>
+                <span id="writingViewNavDate" class="text-warm-text dark:text-warm-bg font-bold">FEB 2026</span>
+            </div>
+        </div>
+
+        <!-- Dynamic Container where openWritingDetailsPage injects formatted markdown & diagram content -->
+        <div id="writingDetailsContainer"></div>
+
+        <!-- Next Article Switch Footer -->
+        <div class="p-8 md:p-12 border-t border-warm-border dark:border-warm-darkBorder font-mono bg-warm-panel/20 dark:bg-warm-darkPanel/20 flex flex-wrap items-center justify-between gap-6">
+            <div>
+                <span class="text-[10px] text-warm-muted uppercase tracking-widest block mb-1">NEXT ESSAY</span>
+                <h4 id="nextArticleTitle" class="font-serif text-xl text-warm-text dark:text-warm-bg font-bold">Read Next Article</h4>
+            </div>
+            <button onclick="openNextWritingArticle()" class="bg-warm-text text-warm-bg dark:bg-warm-bg dark:text-warm-text px-6 py-3.5 text-xs uppercase tracking-widest hover:bg-warm-accent dark:hover:bg-warm-accent dark:hover:text-white transition-colors font-medium flex items-center gap-3">
+                <span>READ NEXT ARTICLE</span>
+                <span>→</span>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- DEDICATED CONTACT PAGE VIEW (SPA ROUTE) -->
+    <div id="contactView" class="hidden max-w-[1400px] mx-auto border-x border-warm-border dark:border-warm-darkBorder w-full flex-grow fade-in bg-warm-bg dark:bg-warm-darkBg">
+        
+        <!-- Breadcrumb & Top Bar Navigation -->
+        <div class="p-6 md:p-8 border-b border-warm-border dark:border-warm-darkBorder font-mono text-xs flex flex-wrap items-center justify-between gap-4 bg-warm-panel/30 dark:bg-warm-darkPanel/30">
+            <button onclick="navigateToHome()" class="flex items-center gap-2 text-warm-text dark:text-warm-bg hover:text-warm-accent dark:hover:text-warm-accent transition-colors border border-warm-border dark:border-warm-darkBorder px-4 py-2 bg-warm-bg dark:bg-warm-darkBg">
+                <span>←</span>
+                <span>RETURN TO HOME</span>
+            </button>
+
+            <div class="flex items-center gap-4 text-warm-muted text-[11px] tracking-widest uppercase">
+                <span>DIRECT REACHOUT</span>
+                <span>/</span>
+                <span class="text-warm-text dark:text-warm-bg font-bold">04. CONTACT & CONNECTIVITY</span>
+            </div>
+        </div>
+
+        <!-- Hero Editorial Banner -->
+        <div class="p-8 md:p-14 lg:p-16 border-b border-warm-border dark:border-warm-darkBorder bg-swiss-grid">
+            <span class="font-mono text-xs text-warm-muted tracking-widest uppercase block mb-3">INQUIRIES & COLLABORATION</span>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-serif text-warm-text dark:text-warm-bg font-normal tracking-tight mb-6">
+                Direct Channels & Technical Inquiries
+            </h1>
+            <p class="text-warm-body dark:text-warm-muted text-base sm:text-lg max-w-2xl font-sans font-normal leading-relaxed">
+                Currently open to Mid-Senior Software Engineering positions.
+            </p>
+        </div>
+
+        <!-- Main Form & Connectivity Grid -->
+         <section id="contact" class="bg-warm-bg dark:bg-warm-darkBg font-mono border-t border-warm-border dark:border-warm-darkBorder">
+            <div class="grid grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-warm-border dark:divide-warm-darkBorder">
+                
+                <!-- Direct Reachout Form -->
+                <div class="col-span-12 lg:col-span-7 p-8 md:p-12 space-y-8">
+                    <div>
+                        <span class="text-xs text-warm-muted tracking-widest uppercase block mb-1">01 / GET IN TOUCH</span>
+                        <h2 class="text-3xl sm:text-4xl font-serif text-warm-text dark:text-warm-bg font-normal">
+                            To build up a challenging career and to work with full dedication to achieve the organization's goal.
+                        </h2>
+                        <p class="text-xs text-warm-body dark:text-warm-muted font-sans mt-3 max-w-lg leading-relaxed">
+                            Open to Software Engineering opportunities.
+                        </p>
+                    </div>
+
+                    <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-5 pt-2">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div>
+                                <label class="block text-[10px] text-warm-muted uppercase mb-2">YOUR NAME *</label>
+                                <input type="text" required placeholder="" class="w-full bg-warm-panel dark:bg-warm-darkPanel border border-warm-border dark:border-warm-darkBorder p-3 text-xs text-warm-text dark:text-warm-bg focus:outline-none focus:border-warm-text dark:focus:border-warm-bg">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] text-warm-muted uppercase mb-2">EMAIL ADDRESS *</label>
+                                <input type="email" required placeholder="" class="w-full bg-warm-panel dark:bg-warm-darkPanel border border-warm-border dark:border-warm-darkBorder p-3 text-xs text-warm-text dark:text-warm-bg focus:outline-none focus:border-warm-text dark:focus:border-warm-bg">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] text-warm-muted uppercase mb-2">MESSAGE / INQUIRY *</label>
+                            <textarea rows="4" required placeholder="" class="w-full bg-warm-panel dark:bg-warm-darkPanel border border-warm-border dark:border-warm-darkBorder p-3 text-xs text-warm-text dark:text-warm-bg focus:outline-none focus:border-warm-text dark:focus:border-warm-bg"></textarea>
+                        </div>
+
+                        <button type="submit" class="bg-warm-text text-warm-bg dark:bg-warm-bg dark:text-warm-text px-8 py-3.5 text-xs uppercase tracking-widest font-medium hover:bg-warm-accent dark:hover:bg-warm-accent dark:hover:text-white transition-colors">
+                            SEND MESSAGE
+                        </button>
+                    </form>
+
+                    <div id="formNotification" class="hidden p-4 border border-emerald-700 bg-emerald-50 dark:bg-emerald-950/30 text-emerald-800 dark:text-emerald-300 text-xs font-mono">
+                        MESSAGE RECEIVED. THANK YOU FOR REACHING OUT!
+                    </div>
+                </div>
+
+                <!-- Direct Connectivity -->
+                <div class="col-span-12 lg:col-span-5 p-8 md:p-12 bg-warm-panel/50 dark:bg-warm-darkPanel/50 space-y-8 flex flex-col justify-between">
+                    <div class="space-y-6">
+                        <span class="text-xs text-warm-muted tracking-widest uppercase block">DIRECT CONNECTIVITY</span>
+
+                        <div class="space-y-3 text-xs">
+                            <div class="border-b border-warm-border dark:border-warm-darkBorder py-2.5 flex justify-between items-center">
+                                <span class="text-warm-muted">EMAIL</span>
+                                <a href="mailto:maythinkyi2003@gmail.com" class="text-warm-text dark:text-warm-bg hover:underline font-medium">maythinkyi2003@gmail.com, maythin.kyi@frontiir.net</a>
+                            </div>
+                            <div class="border-b border-warm-border dark:border-warm-darkBorder py-2.5 flex justify-between items-center">
+                                <span class="text-warm-muted">GITHUB</span>
+                                <a href="https://github.com/maythinkyi" target="_blank" rel="noopener" class="text-warm-text dark:text-warm-bg hover:underline font-medium">github.com/maythinkyi</a>
+                            </div>
+                            <div class="border-b border-warm-border dark:border-warm-darkBorder py-2.5 flex justify-between items-center">
+                                <span class="text-warm-muted">LINKEDIN</span>
+                                <a href="https://www.linkedin.com/in/may-thin-kyi-023b861b6/" target="_blank" rel="noopener" class="text-warm-text dark:text-warm-bg hover:underline font-medium">linkedin.com/maythinkyi</a>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 space-y-2">
+                            <span class="text-[10px] text-warm-muted uppercase block">AVAILABILITY</span>
+                            <div class="p-3 bg-warm-bg dark:bg-warm-darkBg border border-warm-border dark:border-warm-darkBorder text-xs flex items-center gap-3">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                                <span>OPEN TO MID-SENIOR SWE ROLES</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-8 border-t border-warm-border dark:border-warm-darkBorder text-[10px] text-warm-muted flex justify-between">
+                        <span>© 2026 May Thin Kyi</span>
+                        <!-- <span>EDITORIAL SWISS STYLE</span> -->
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeModeLabel = document.getElementById('themeModeLabel');
+        const htmlEl = document.documentElement;
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (htmlEl.classList.contains('light')) {
+                htmlEl.classList.remove('light');
+                htmlEl.classList.add('dark');
+                themeModeLabel.innerText = 'EARTH DARK';
+            } else {
+                htmlEl.classList.remove('dark');
+                htmlEl.classList.add('light');
+                themeModeLabel.innerText = 'WARM LIGHT';
+            }
+        });
+
+        // Update active nav indicator
+        function setActiveNav(navName) {
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                if (link.getAttribute('data-nav') === navName) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        }
+
+        /* Mobile Navbar Navigation Toggle */
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const hamburgerIcon = document.getElementById('hamburgerIcon');
+            const closeIcon = document.getElementById('closeIcon');
+            
+            navMenu.classList.toggle('hidden');
+            hamburgerIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('hidden');
+        }
+
+        function closeMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            const hamburgerIcon = document.getElementById('hamburgerIcon');
+            const closeIcon = document.getElementById('closeIcon');
+            
+            if (navMenu && !navMenu.classList.contains('hidden') && window.innerWidth < 768) {
+                navMenu.classList.add('hidden');
+                hamburgerIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            }
+        }
+
+        // FULL PROJECTS DATABASE
+        const fullProjectDatabase = {
+            taskrelay: {
+                id: 'taskrelay',
+                badge: 'PROJECT 01 // RT Ticketing System',
+                title: 'RT Ticketing System',
+                subtitle: 'High-Throughput Event Driven Ticketing Platform',
+                role: 'Associate Software Engineer',
+                timeline: 'August 2026 - Present',
+                stack: 'Go, MySQL, Redis, Docker, Gin, Apache Kafka',
+                metrics: [
+                    { label: 'THROUGHPUT', val: '1,200 req/sec', detail: '320% increase over sync monolith' },
+                    { label: 'LATENCY (p95)', val: '18ms', detail: 'Under spike burst traffic' },
+                    { label: 'IDEMPOTENCY', val: '99.99%', detail: 'Atomic Redis locks SETNX' },
+                    { label: 'TEST COVERAGE', val: '91%', detail: 'Table-driven Go unit tests' }
+                ],
+                diagram: `
+                    <svg viewBox="0 0 700 280" class="w-full h-auto text-warm-text dark:text-warm-bg my-4">
+                        <line x1="120" y1="140" x2="260" y2="140" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 4" />
+                        <line x1="400" y1="140" x2="520" y2="140" stroke="currentColor" stroke-width="1.5" />
+                        <line x1="520" y1="90" x2="520" y2="190" stroke="currentColor" stroke-width="1" />
+                        <line x1="520" y1="90" x2="600" y2="90" stroke="currentColor" stroke-width="1.5" />
+                        <line x1="520" y1="190" x2="600" y2="190" stroke="currentColor" stroke-width="1.5" />
+
+                        <rect x="20" y="100" width="100" height="80" fill="none" stroke="currentColor" stroke-width="1.5" />
+                        <text x="70" y="138" font-family="Space Mono" font-size="10" fill="currentColor" text-anchor="middle">HTTP WEBHOOK</text>
+                        <text x="70" y="152" font-family="Space Mono" font-size="8" fill="#887d72" text-anchor="middle">INGESTION</text>
+
+                        <rect x="260" y="95" width="140" height="90" fill="none" stroke="currentColor" stroke-width="2" />
+                        <text x="330" y="132" font-family="Space Mono" font-size="11" font-weight="bold" fill="currentColor" text-anchor="middle">GO WORKER POOL</text>
+                        <text x="330" y="148" font-family="Space Mono" font-size="8" fill="#887d72" text-anchor="middle">10 GOROUTINES / CHAN</text>
+
+                        <rect x="600" y="65" width="80" height="50" fill="none" stroke="currentColor" stroke-width="1.5" />
+                        <text x="640" y="95" font-family="Space Mono" font-size="9" fill="currentColor" text-anchor="middle">REDIS LOCKS</text>
+
+                        <rect x="600" y="165" width="80" height="50" fill="none" stroke="currentColor" stroke-width="1.5" />
+                        <text x="640" y="195" font-family="Space Mono" font-size="9" fill="currentColor" text-anchor="middle">POSTGRES DB</text>
+                    </svg>
+                `,
+                overview: `
+                    RT Ticketing System is designed to track, manage, and automate complex operational workflows and ticket lifecycles. RT ingests requests from web interfaces, REST APIs, CLI tools, and inbound email streams. Incoming issues are categorized into isolated Technical and Non-Technical queues, each with defined lifecycles, fine-grained access controls, and custom metadata fields. At its core, RT records every interaction as an immutable, audited transaction and utilizes an event-driven automation engine which automatically triggers custom actions, owner assignments, and notification templates based on specific ticket conditions—enabling seamless, reliable request management across distributed engineering teams and Network operations teams.
+                `,
+                keyChallenges: [
+                    {
+                        title: 'Bounded Goroutine Concurrency',
+                        desc: 'Prevented unthrottled thread creation under 10k/sec request bursts by writing a worker pool pattern with buffered channels, keeping process RSS memory stable under 90MB.'
+                    },
+                    {
+                        title: 'Atomic Webhook Idempotency',
+                        desc: 'Guaranteed exact-once delivery for duplicated third-party payment notifications by implementing atomic Redis key-locking with custom TTL lease expiration.'
+                    },
+                    {
+                        title: 'Exponential Backoff & DLQ Routing',
+                        desc: 'Engineered automatic retry loops with jitter for downstream HTTP failures, automatically offloading permanently unresolvable payloads to a PostgreSQL Dead Letter Queue (DLQ).'
+                    }
+                ],
+                nextId: 'metrics'
+            },
+            
+        };
+
+        // FULL TECHNICAL WRITING DATABASE
+        const fullWritingDatabase = {
+    'go-concurrency-patterns': {
+        id: 'test',
+        title: 'Writing 1',
+        subtitle: 'A practical guide to editorial design, layout composition, and placeholder content structuring.',
+        category: 'Software Design',
+        date: 'Sep 2026',
+        readTime: '6 MIN READ',
+        author: '',
+        summary: 'Summary Testing...',
+        nextId: 'postgres-zero-downtime',
+        diagram: `
+            <svg viewBox="0 0 680 200" class="w-full h-auto text-warm-text dark:text-warm-bg my-4">
+                <rect x="20" y="60" width="100" height="80" fill="none" stroke="currentColor" stroke-width="1.5" />
+                <text x="70" y="95" font-family="Space Mono" font-size="10" fill="currentColor" text-anchor="middle">INPUT</text>
+                <text x="70" y="112" font-family="Space Mono" font-size="8" fill="#887d72" text-anchor="middle">STREAM A</text>
+
+                <line x1="120" y1="100" x2="220" y2="100" stroke="currentColor" stroke-width="1.5" />
+                
+                <rect x="220" y="60" width="130" height="80" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3" />
+                <text x="285" y="95" font-family="Space Mono" font-size="10" fill="currentColor" text-anchor="middle">BUFFER</text>
+                <text x="285" y="112" font-family="Space Mono" font-size="8" fill="#887d72" text-anchor="middle">QUEUE_FLOW</text>
+
+                <line x1="350" y1="100" x2="450" y2="100" stroke="currentColor" stroke-width="1.5" />
+
+                <rect x="450" y="20" width="180" height="40" fill="none" stroke="currentColor" stroke-width="1.5" />
+                <text x="540" y="44" font-family="Space Mono" font-size="9" fill="currentColor" text-anchor="middle">SECTION_ALPHA</text>
+
+                <rect x="450" y="80" width="180" height="40" fill="none" stroke="currentColor" stroke-width="1.5" />
+                <text x="540" y="104" font-family="Space Mono" font-size="9" fill="currentColor" text-anchor="middle">SECTION_BETA</text>
+
+                <rect x="450" y="140" width="180" height="40" fill="none" stroke="currentColor" stroke-width="1.5" />
+                <text x="540" y="164" font-family="Space Mono" font-size="9" fill="currentColor" text-anchor="middle">SECTION_GAMMA</text>
+            </svg>
+        `,
+        contentMd: `
+## Introduction
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat:
+
+\`\`\`
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Sed do eiusmod tempor incididunt ut labore et dolore.
+Duis aute irure dolor in reprehenderit in voluptate.
+\`\`\`
+
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+---
+
+## Lorem Ipsum Section Title
+
+Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius, turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis sollicitudin mauris. Integer in mauris eu nibh euismod gravida.
+
+### General Composition
+
+\`\`\`
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Pellentesque habitant morbi tristique senectus et netus.
+Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.
+\`\`\`
+
+---
+
+## Primary Insights
+
+> **Editorial Note:** Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.
+
+* **First Feature:** Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ultricies ligula sed magna dictum porta.
+* **Second Feature:** Vivamus suscipit tortor eget felis porttitor volutpat. Curabitur aliquet quam id dui posu
+ere blandit.
+* **Third Feature:** Donec sollicitudin molestie malesuada. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
+        `
+    }
+};
+        /* 
+        const fullWritingDatabase = {
+            'go-concurrency-patterns': {
+                id: 'go-concurrency-patterns',
+                title: 'Architecting Bounded Goroutine Worker Pools for High-Throughput APIs',
+                subtitle: 'A practical guide to channel buffering, context propagation, and memory bounding under spike traffic.',
+                category: 'DISTRIBUTED SYSTEMS',
+                date: 'FEB 2026',
+                readTime: '6 MIN READ',
+                author: 'Alex Mercer',
+                summary: 'Exploring how unbuffered Goroutine spawns cause memory exhaustion under sudden traffic bursts, and how bounded channel worker pools preserve low-latency p95 thresholds.',
+                nextId: 'postgres-zero-downtime',
+                diagram: `
+                    <svg viewBox="0 0 680 200" class="w-full h-auto text-warm-text dark:text-warm-bg my-4">
+                        <rect x="20" y="60" width="100" height="80" fill="none" stroke="currentColor" stroke-width="1.5" />
+                        <text x="70" y="95" font-family="Space Mono" font-size="10" fill="currentColor" text-anchor="middle">HTTP REQS</text>
+                        <text x="70" y="112" font-family="Space Mono" font-size="8" fill="#887d72" text-anchor="middle">10k / sec</text>
+
+                        <line x1="120" y1="100" x2="220" y2="100" stroke="currentColor" stroke-width="1.5" />
+                        
+                        <rect x="220" y="60" width="130" height="80" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 3" />
+                        <text x="285" y="95" font-family="Space Mono" font-size="10" fill="currentColor" text-anchor="middle">JOB CHANNEL</text>
+                        <text x="285" y="112" font-family="Space Mono" font-size="8" fill="#887d72" text-anchor="middle">CAPACITY = 500</text>
+
+                        <line x1="350" y1="100" x2="450" y2="100" stroke="currentColor" stroke-width="1.5" />
+
+                        <rect x="450" y="20" width="180" height="40" fill="none" stroke="currentColor" stroke-width="1.5" />
+                        <text x="540" y="44" font-family="Space Mono" font-size="9" fill="currentColor" text-anchor="middle">WORKER_01 (GOROUTINE)</text>
+
+                        <rect x="450" y="80" width="180" height="40" fill="none" stroke="currentColor" stroke-width="1.5" />
+                        <text x="540" y="104" font-family="Space Mono" font-size="9" fill="currentColor" text-anchor="middle">WORKER_02 (GOROUTINE)</text>
+
+                        <rect x="450" y="140" width="180" height="40" fill="none" stroke="currentColor" stroke-width="1.5" />
+                        <text x="540" y="164" font-family="Space Mono" font-size="9" fill="currentColor" text-anchor="middle">WORKER_0N (GOROUTINE)</text>
+                    </svg>
+                `,
+                contentMd: `
+## Introduction
+
+When building microservices in **Go**, the initial temptation is often to launch a goroutine for every incoming asynchronous request:
+
+\`\`\`go
+// ANTI-PATTERN: Unbounded Goroutine Spawning
+func handleWebhook(w http.ResponseWriter, r *http.Request) {
+    payload := parsePayload(r)
+    go processPayload(payload) // Dangerous under 10k req/sec
+    w.WriteHeader(http.StatusAccepted)
+}
+\`\`\`
+
+While Go goroutines are extremely lightweight (~2KB stack size initially), spawning thousands per second under traffic spikes quickly causes **Goroutine Leaks**, memory exhaustion, and GC (Garbage Collection) pauses that severely degrade server p99 latency.
+
+---
+
+## Bounded Worker Pool Pattern
+
+To enforce predictability and memory safety, we introduce a fixed worker pool connected via buffered channels. The HTTP handler pushes incoming jobs into a bounded channel, while a set number of background goroutines drain the queue.
+
+### Core Implementation
+
+\`\`\`go
+package main
+
+import (
+    "context"
+    "fmt"
+    "time"
+)
+
+type Job struct {
+    ID      string
+    Payload []byte
+}
+
+type Dispatcher struct {
+    workerCount int
+    jobQueue    chan Job
+}
+
+func NewDispatcher(workers, queueCap int) *Dispatcher {
+    return &Dispatcher{
+        workerCount: workers,
+        jobQueue:    make(chan Job, queueCap),
+    }
+}
+
+func (d *Dispatcher) Start(ctx context.Context) {
+    for i := 0; i < d.workerCount; i++ {
+        workerID := i
+        go func() {
+            for {
+                select {
+                case <-ctx.Done():
+                    return
+                case job, ok := <-d.jobQueue:
+                    if !ok {
+                        return
+                    }
+                    d.execute(workerID, job)
+                }
+            }
+        }()
+    }
+}
+
+func (d *Dispatcher) execute(workerID int, j Job) {
+    // Process payload reliably
+    fmt.Printf("[Worker %d] Processing Job %s\\n", workerID, j.ID)
+}
+\`\`\`
+
+---
+
+## Architectural Key Takeaways
+
+> **Engineering Principle:** Systems should degrade gracefully by applying backpressure or rate limits rather than crashing from unbounded memory growth.
+
+* **Memory Bounding:** Setting a fixed queue size ensures RAM usage remains stable under 100MB even during massive traffic bursts.
+* **Graceful Shutdown:** Propagating \`context.Context\` guarantees that in-flight jobs finish processing before container termination.
+* **Handling Overflow:** When the channel capacity is reached, return HTTP \`429 Too Many Requests\` or push excess jobs to a Redis streaming queue.
+                `
+            },
+            'postgres-zero-downtime': {
+                id: 'postgres-zero-downtime',
+                title: 'Executing Zero-Downtime PostgreSQL Schema Migrations',
+                subtitle: 'Safe strategies for ALTER TABLE, non-blocking index creation, and column renaming.',
+                category: 'DATABASE ENGINEERING',
+                date: 'JAN 2026',
+                readTime: '8 MIN READ',
+                author: 'Alex Mercer',
+                summary: 'How to safely alter large PostgreSQL production tables without acquiring ACCESS EXCLUSIVE locks that block live API traffic.',
+                nextId: 'redis-rate-limiting',
+                diagram: `
+                    <svg viewBox="0 0 680 180" class="w-full h-auto text-warm-text dark:text-warm-bg my-4">
+                        <rect x="30" y="50" width="160" height="70" fill="none" stroke="currentColor" stroke-width="1.5" />
+                        <text x="110" y="80" font-family="Space Mono" font-size="10" fill="currentColor" text-anchor="middle">STEP 1: ADD COLUMN</text>
+                        <text x="110" y="98" font-family="Space Mono" font-size="8" fill="#887d72" text-anchor="middle">NULLABLE new_email</text>
+
+                        <line x1="190" y1="85" x2="260" y2="85" stroke="currentColor" stroke-width="1.5" />
+
+                        <rect x="260" y="50" width="160" height="70" fill="none" stroke="currentColor" stroke-width="1.5" />
+                        <text x="340" y="80" font-family="Space Mono" font-size="10" fill="currentColor" text-anchor="middle">STEP 2: DUAL WRITE</text>
+                        <text x="340" y="98" font-family="Space Mono" font-size="8" fill="#887d72" text-anchor="middle">Write both columns</text>
+
+                        <line x1="420" y1="85" x2="490" y2="85" stroke="currentColor" stroke-width="1.5" />
+
+                        <rect x="490" y="50" width="160" height="70" fill="none" stroke="currentColor" stroke-width="1.5" />
+                        <text x="570" y="80" font-family="Space Mono" font-size="10" fill="currentColor" text-anchor="middle">STEP 3: DROP OLD</text>
+                        <text x="570" y="98" font-family="Space Mono" font-size="8" fill="#887d72" text-anchor="middle">Drop old_email column</text>
+                    </svg>
+                `,
+                contentMd: `
+## The Danger of Locking Production Databases
+
+Executing a naive DDL migration such as \`ALTER TABLE users ADD COLUMN phone VARCHAR NOT NULL DEFAULT 'N/A';\` on a 50-million-row table requires an \`ACCESS EXCLUSIVE\` lock. This blocks all read and write queries on the table, resulting in API outages and gateway timeouts.
+
+---
+
+## Safe Migration Blueprint
+
+### 1. Adding Non-Blocking Index Creation
+
+Never run a raw \`CREATE INDEX\` statement on live production data. Instead, use PostgreSQL's concurrent index feature:
+
+\`\`\`sql
+-- BAD: Blocks concurrent reads and writes
+CREATE INDEX idx_orders_user_id ON orders(user_id);
+
+-- GOOD: Scans table twice without acquiring write locks
+CREATE INDEX CONCURRENTLY idx_orders_user_id ON orders(user_id);
+\`\`\`
+
+### 2. Multi-Step Column Renaming Strategy
+
+Instead of renaming a column in a single migration, execute a safe 4-stage deployment:
+
+1. **Add new column:** Add the new column as nullable without locks.
+2. **Dual-write application code:** Update API backend code to write to both old and new columns simultaneously.
+3. **Backfill legacy data:** Run asynchronous batch updates to sync historical rows in small chunks.
+4. **Remove old column:** Deprecate reads/writes to the old column and execute drop migration.
+
+---
+
+## Summary Principles
+
+> **Rule of Thumb:** Always test DDL migrations against a staging database with realistic table size distributions and active concurrent traffic simulators.
+                `
+            },
+            'redis-rate-limiting': {
+                id: 'redis-rate-limiting',
+                title: 'Building Rate-Limiting Middleware with Redis Sliding Window',
+                subtitle: 'Preventing API abuse using token bucket and Redis sorted sets (ZSET).',
+                category: 'PERFORMANCE ENGINEERING',
+                date: 'DEC 2025',
+                readTime: '5 MIN READ',
+                author: 'Alex Mercer',
+                summary: 'Comparing Fixed Window vs. Sliding Window rate-limiting algorithms in Express and Node.js microservices.',
+                nextId: 'go-concurrency-patterns',
+                diagram: `
+                    <svg viewBox="0 0 680 180" class="w-full h-auto text-warm-text dark:text-warm-bg my-4">
+                        <rect x="40" y="50" width="120" height="80" fill="none" stroke="currentColor" stroke-width="1.5" />
+                        <text x="100" y="85" font-family="Space Mono" font-size="10" fill="currentColor" text-anchor="middle">API REQ</text>
+                        <text x="100" y="100" font-family="Space Mono" font-size="8" fill="#887d72" text-anchor="middle">Header: Bearer JWT</text>
+
+                        <line x1="160" y1="90" x2="260" y2="90" stroke="currentColor" stroke-width="1.5" />
+
+                        <rect x="260" y="45" width="160" height="90" fill="none" stroke="currentColor" stroke-width="2" />
+                        <text x="340" y="82" font-family="Space Mono" font-size="11" font-weight="bold" fill="currentColor" text-anchor="middle">SLIDING WINDOW</text>
+                        <text x="340" y="98" font-family="Space Mono" font-size="8" fill="#887d72" text-anchor="middle">REDIS ZSET PIPELINE</text>
+
+                        <line x1="420" y1="90" x2="520" y2="90" stroke="currentColor" stroke-width="1.5" />
+
+                        <rect x="520" y="50" width="120" height="80" fill="none" stroke="currentColor" stroke-width="1.5" />
+                        <text x="580" y="85" font-family="Space Mono" font-size="10" fill="currentColor" text-anchor="middle">RESPONSE</text>
+                        <text x="580" y="100" font-family="Space Mono" font-size="8" fill="#887d72" text-anchor="middle">200 OK / 429 LIMIT</text>
+                    </svg>
+                `,
+                contentMd: `
+## Why Fixed Windows Fail
+
+Fixed window counters reset at set calendar intervals (e.g., top of every minute). An attacker can exploit this by sending 100 requests at 11:59:59 and another 100 requests at 12:00:01, effectively executing 200 requests within a 2-second interval without triggering a rate limit error.
+
+---
+
+## The Redis Sliding Window Log Solution
+
+By using Redis **Sorted Sets (ZSET)**, every API request is stored with a Unix millisecond timestamp as its score. When a new request arrives, we prune timestamps older than the active window duration (e.g., 60 seconds) and check the remaining element count atomically.
+
+### Middleware Implementation Pattern
+
+\`\`\`javascript
+const Redis = require('ioredis');
+const redis = new Redis();
+
+async function slidingWindowRateLimiter(req, res, next) {
+    const key = \`rate_limit:\${req.ip}\`;
+    const now = Date.now();
+    const windowSizeMs = 60 * 1000; // 1 minute window
+    const maxRequests = 100;
+
+    const pipeline = redis.pipeline();
+    pipeline.zremrangebyscore(key, 0, now - windowSizeMs); // Remove old entries
+    pipeline.zadd(key, now, now.toString()); // Add current request
+    pipeline.zcard(key); // Count active window logs
+    pipeline.expire(key, 60); // Reset TTL
+
+    const results = await pipeline.exec();
+    const requestCount = results[2][1];
+
+    if (requestCount > maxRequests) {
+        return res.status(429).json({
+            error: 'Too Many Requests',
+            message: 'Rate limit exceeded. Try again in 60 seconds.'
+        });
+    }
+
+    next();
+}
+\`\`\`
+
+---
+
+## Conclusion
+
+Sliding window rate limiting with Redis pipelines guarantees smooth request shaping and prevents edge-burst vulnerabilities in production API microservices.
+                `
+            }
+        };
+        */
+        // NAVIGATION STATE MANAGEMENT (SINGLE PAGE APPLICATION ROUTER)
+        let currentView = 'home';
+        let currentProjectId = 'taskrelay';
+        let currentWritingId = 'go-concurrency-patterns';
+
+        function hideAllViews() {
+            document.getElementById('homeView').classList.add('hidden');
+            document.getElementById('aboutView').classList.add('hidden');
+            document.getElementById('workView').classList.add('hidden');
+            document.getElementById('projectDetailsView').classList.add('hidden');
+            document.getElementById('writingView').classList.add('hidden');
+            document.getElementById('writingDetailsView').classList.add('hidden');
+            document.getElementById('contactView').classList.add('hidden');
+        }
+
+        function navigateToHome() {
+            hideAllViews();
+            document.getElementById('homeView').classList.remove('hidden');
+            currentView = 'home';
+            setActiveNav('home');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openAboutPage() {
+            hideAllViews();
+            document.getElementById('aboutView').classList.remove('hidden');
+            currentView = 'about';
+            setActiveNav('about');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openWorkPage() {
+            hideAllViews();
+            document.getElementById('workView').classList.remove('hidden');
+            currentView = 'work';
+            setActiveNav('work');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openProjectPage(projId) {
+            hideAllViews();
+            const proj = fullProjectDatabase[projId] || fullProjectDatabase.taskrelay;
+            currentProjectId = projId;
+
+            document.getElementById('projViewNavBadge').innerText = proj.badge;
+            
+            // Build details view HTML
+            const container = document.getElementById('projectDetailsContainer');
+            container.innerHTML = `
+                <div class="p-8 md:p-14 lg:p-16 border-b border-warm-border dark:border-warm-darkBorder bg-swiss-grid">
+                    <span class="font-mono text-xs text-warm-muted tracking-widest uppercase block mb-2">${proj.badge}</span>
+                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-serif text-warm-text dark:text-warm-bg font-normal tracking-tight mb-4">
+                        ${proj.title}
+                    </h1>
+                    <p class="text-warm-body dark:text-warm-muted text-base sm:text-lg max-w-3xl font-sans font-normal leading-relaxed mb-8">
+                        ${proj.subtitle}
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 font-mono text-xs pt-6 border-t border-warm-border dark:border-warm-darkBorder">
+                        <div>
+                            <span class="text-[10px] text-warm-muted uppercase block tracking-widest mb-1">ROLE</span>
+                            <span class="text-warm-text dark:text-warm-bg font-semibold">${proj.role}</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] text-warm-muted uppercase block tracking-widest mb-1">TIMELINE</span>
+                            <span class="text-warm-text dark:text-warm-bg">${proj.timeline}</span>
+                        </div>
+                        <div>
+                            <span class="text-[10px] text-warm-muted uppercase block tracking-widest mb-1">CORE TECH STACK</span>
+                            <span class="text-warm-text dark:text-warm-bg">${proj.stack}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="p-8 md:p-12 border-b border-warm-border dark:border-warm-darkBorder font-mono">
+                    <span class="text-xs text-warm-muted tracking-widest uppercase block mb-6">VERIFIED PRODUCTION METRICS</span>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                        ${proj.metrics.map(m => `
+                            <div class="p-5 border border-warm-border dark:border-warm-darkBorder bg-warm-panel/40 dark:bg-warm-darkPanel/40">
+                                <span class="text-[10px] text-warm-muted block mb-1 uppercase tracking-wider">${m.label}</span>
+                                <span class="text-2xl font-bold text-warm-text dark:text-warm-bg block mb-1">${m.val}</span>
+                                <span class="text-[10px] text-warm-muted font-sans block">${m.detail}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div> -->
+
+                <div class="p-8 md:p-12 border-b border-warm-border dark:border-warm-darkBorder font-mono bg-warm-panel/20 dark:bg-warm-darkPanel/20">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs text-warm-muted tracking-widest uppercase">SYSTEM ARCHITECTURE SCHEMATIC</span>
+                        <span class="text-[10px] text-warm-muted">SWISS GRID ARCHITECTURE</span>
+                    </div>
+                    <!-- <div class="p-6 border border-warm-border dark:border-warm-darkBorder bg-warm-bg dark:bg-warm-darkBg">
+                        ${proj.diagram}
+                    </div> -->
+                    <img src="./rt.png" />
+                </div>
+
+                <div class="p-8 md:p-12 border-b border-warm-border dark:border-warm-darkBorder font-sans space-y-8">
+                    <div>
+                        <span class="font-mono text-xs text-warm-muted tracking-widest uppercase block mb-2">SYSTEM OVERVIEW</span>
+                        <p class="text-warm-body dark:text-warm-muted text-sm sm:text-base leading-relaxed max-w-4xl">
+                            ${proj.overview}
+                        </p>
+                    </div>
+
+                    <!-- <div>
+                        <span class="font-mono text-xs text-warm-muted tracking-widest uppercase block mb-6">ENGINEERING CHALLENGES & ARCHITECTURAL SOLUTIONS</span>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            ${proj.keyChallenges.map((c, i) => `
+                                <div class="p-6 border border-warm-border dark:border-warm-darkBorder bg-warm-panel/20 dark:bg-warm-darkPanel/20 space-y-2">
+                                    <span class="font-mono text-[10px] text-warm-muted block">CHALLENGE 0${i+1}</span>
+                                    <h4 class="font-serif text-lg font-bold text-warm-text dark:text-warm-bg">${c.title}</h4>
+                                    <p class="text-xs text-warm-body dark:text-warm-muted leading-relaxed">${c.desc}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div> -->
+                </div>
+            `;
+
+            document.getElementById('projectDetailsView').classList.remove('hidden');
+            currentView = 'projectDetails';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openNextProject() {
+            const currentProj = fullProjectDatabase[currentProjectId];
+            if (currentProj && currentProj.nextId) {
+                openProjectPage(currentProj.nextId);
+            } else {
+                openProjectPage('taskrelay');
+            }
+        }
+
+        function openWritingPage() {
+            hideAllViews();
+
+            // Populate writing list dynamically
+            const listContainer = document.getElementById('writingListContainer');
+            listContainer.innerHTML = Object.keys(fullWritingDatabase).map(key => {
+                const item = fullWritingDatabase[key];
+                return `
+                    <article class="p-8 md:p-12 bg-swiss-grid hover:bg-warm-panel/20 transition-colors">
+                        <div class="grid grid-cols-12 gap-6 items-center">
+                            <div class="col-span-12 lg:col-span-9 font-sans space-y-3">
+                                <div class="flex items-center gap-4 font-mono text-xs text-warm-muted">
+                                    <span class="text-warm-accent font-semibold">${item.category}</span>
+                                    <span>/</span>
+                                    <span>${item.date}</span>
+                                    <span>/</span>
+                                    <span>${item.readTime}</span>
+                                </div>
+                                <h3 class="font-serif text-2xl sm:text-3xl text-warm-text dark:text-warm-bg font-semibold hover:text-warm-accent transition-colors cursor-pointer" onclick="openWritingDetailsPage('${item.id}')">
+                                    ${item.title}
+                                </h3>
+                                <p class="text-xs sm:text-sm text-warm-body dark:text-warm-muted leading-relaxed">
+                                    ${item.summary}
+                                </p>
+                            </div>
+                            <div class="col-span-12 lg:col-span-3 flex lg:justify-end pt-4 lg:pt-0 font-mono">
+                                <button onclick="openWritingDetailsPage('${item.id}')" class="bg-warm-text text-warm-bg dark:bg-warm-bg dark:text-warm-text px-5 py-3 text-xs uppercase tracking-widest hover:bg-warm-accent dark:hover:bg-warm-accent dark:hover:text-white transition-colors w-full sm:w-auto font-medium flex items-center justify-between gap-3">
+                                    <span>READ ARTICLE</span>
+                                    <span>→</span>
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                `;
+            }).join('');
+
+            document.getElementById('writingView').classList.remove('hidden');
+            currentView = 'writing';
+            setActiveNav('writing');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openWritingDetailsPage(writingId) {
+            hideAllViews();
+            const writing = fullWritingDatabase[writingId] || fullWritingDatabase['go-concurrency-patterns'];
+            currentWritingId = writingId;
+
+            document.getElementById('writingViewNavCategory').innerText = writing.category;
+            document.getElementById('writingViewNavDate').innerText = writing.date;
+
+            // Set next title in footer button
+            const nextArticle = fullWritingDatabase[writing.nextId] || fullWritingDatabase['go-concurrency-patterns'];
+            document.getElementById('nextArticleTitle').innerText = nextArticle.title;
+
+            // Simple markdown-like line converter for rendering
+            let formattedContent = writing.contentMd
+                .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+                .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+                .replace(/^> (.*$)/gim, '<blockquote>$1</blockquote>')
+                .replace(/\*\*(.* vast|\*\*.*?\*\*)\*\*/g, '<strong>$1</strong>')
+                .replace(/`([^`]+)`/g, '<code>$1</code>')
+                .replace(/```(go|sql|javascript)([\s\S]*?)```/g, '<pre><code>$2</code></pre>')
+                .replace(/\n\n/g, '</p><p>');
+
+            const container = document.getElementById('writingDetailsContainer');
+            container.innerHTML = `
+                <div class="p-8 md:p-14 lg:p-16 border-b border-warm-border dark:border-warm-darkBorder bg-swiss-grid">
+                    <div class="flex items-center gap-4 font-mono text-xs text-warm-muted mb-4">
+                        <span class="text-warm-accent font-semibold">${writing.category}</span>
+                        <span>/</span>
+                        <span>${writing.date}</span>
+                        <span>/</span>
+                        <span>${writing.readTime}</span>
+                        <span>/</span>
+                        <span>BY ${writing.author.toUpperCase()}</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-serif text-warm-text dark:text-warm-bg font-normal tracking-tight mb-4">
+                        ${writing.title}
+                    </h1>
+                    <p class="text-warm-body dark:text-warm-muted text-base sm:text-lg max-w-3xl font-sans font-normal leading-relaxed">
+                        ${writing.subtitle}
+                    </p>
+                </div>
+
+                <div class="p-8 md:p-12 border-b border-warm-border dark:border-warm-darkBorder font-mono bg-warm-panel/20 dark:bg-warm-darkPanel/20">
+                    <span class="text-xs text-warm-muted tracking-widest uppercase block mb-2">SYSTEM SCHEMATIC / FLOW DIAGRAM</span>
+                    <div class="p-6 border border-warm-border dark:border-warm-darkBorder bg-warm-bg dark:bg-warm-darkBg">
+                        ${writing.diagram}
+                    </div>
+                </div>
+
+                <div class="p-8 md:p-14 border-b border-warm-border dark:border-warm-darkBorder max-w-4xl mx-auto">
+                    <div class="article-content font-sans text-warm-body dark:text-warm-muted">
+                        <p>${formattedContent}</p>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('writingDetailsView').classList.remove('hidden');
+            currentView = 'writingDetails';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function openNextWritingArticle() {
+            const currentArticle = fullWritingDatabase[currentWritingId];
+            if (currentArticle && currentArticle.nextId) {
+                openWritingDetailsPage(currentArticle.nextId);
+            } else {
+                openWritingDetailsPage('go-concurrency-patterns');
+            }
+        }
+
+        function openContactPage() {
+            hideAllViews();
+            document.getElementById('contactView').classList.remove('hidden');
+            currentView = 'contact';
+            setActiveNav('contact');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const formNotification = document.getElementById('formNotification');
+            const pageNotification = document.getElementById('contactPageNotification');
+            
+            if (formNotification) formNotification.classList.remove('hidden');
+            if (pageNotification) pageNotification.classList.remove('hidden');
+
+            e.target.reset();
+
+            setTimeout(() => {
+                if (formNotification) formNotification.classList.add('hidden');
+                if (pageNotification) pageNotification.classList.add('hidden');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
