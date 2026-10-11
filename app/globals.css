@@ -83,7 +83,6 @@ body {
 
 /* Header nav: a bold 3px underline draws in across the full text width, sitting below the text. */
 .nav-link-bold {
-  display: inline-block;
   padding-bottom: 0.2em;
   background-image: linear-gradient(currentColor, currentColor);
   background-size: 0% 3px;

@@ -17,9 +17,9 @@ export const site = {
 
 export const hero = {
   badge: "Software Engineer · 2+ years of experience",
-  headline: ["Building Software", "and Keep Learning"],
+  headline: "A Software Engineer building backend systems and scalable services.",
   intro:
-    "Associate Software Engineer focused on building efficient and scalable software. Every project is a chance to learn, and I work with JavaScript, Go and Python ecosystems, and system integration through Apache Kafka, RabbitMQ and Redis.",
+    "A Software Engineer focused on building efficient and scalable software. Every project is a chance to learn, and I work with JavaScript, Go and Python ecosystems, and system integration through Apache Kafka, RabbitMQ and Redis.",
 };
 
 export const manifesto =
@@ -115,7 +115,7 @@ export const work = [
     title: "Ticketing System",
     subtitle: "Telecom/ISP OSS System",
     tone: "from-indigo-900 to-violet-600",
-    tags: ["React", "Go", "REST APIs", "Apache Kafka", "Redis", "MySQL"],
+    tags: ["Perl", "React", "Go", "REST APIs", "Apache Kafka", "Redis", "MySQL"],
     industries: ["Telecom/ISP OSS System"],
     description:
       "A ticketing system used by both technical and non-technical departments at a Telecom/ISP company, for tracking requests and issues from start to resolution.",

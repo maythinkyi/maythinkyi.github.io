@@ -12,8 +12,8 @@ const satoshi = localFont({
 });
 
 export const metadata: Metadata = {
-  title: `${site.name} — Designer & Developer`,
-  description: "Portfolio of UI/UX design and web development work.",
+  title: `${site.name} | Software Engineer`,
+  description: "Software Engineer Portfolio",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

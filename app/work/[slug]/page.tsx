@@ -107,7 +107,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             <Reveal className="mt-14">
               <a
                 href={`mailto:${site.email}`}
-                className="inline-flex items-center gap-4 rounded-full bg-background px-8 py-4 text-2xl text-foreground transition-transform duration-300 hover:-translate-y-1"
+                className="hidden items-center gap-4 rounded-full bg-background px-8 py-4 text-2xl text-foreground transition-transform duration-300 hover:-translate-y-1 md:inline-flex"
               >
                 {site.ctaLabel}
                 <span aria-hidden="true">→</span>

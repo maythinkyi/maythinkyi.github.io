@@ -5,6 +5,7 @@ import { Marquee } from "@/components/marquee";
 import { Reveal } from "@/components/reveal";
 import { ScrollWords } from "@/components/scroll-words";
 import { ServiceCard } from "@/components/service-card";
+import { WorkCard } from "@/components/work-card";
 // import { HorizontalScroll } from "@/components/horizontal-scroll";
 import { CursorBubble } from "@/components/cursor-bubble";
 import { SiteHeader } from "@/components/site-header";
@@ -34,15 +35,14 @@ export default function Home() {
                 {hero.badge}
               </span>
             </Reveal>
-            <h1 className="text-[clamp(3.25rem,9vw,9.5rem)] leading-[0.95] font-extralight tracking-[-0.035em]">
-              <AnimatedText as="span" className="block" text={hero.headline[0]} delay={150} stagger={90} />
-              <AnimatedText as="span" className="block" text={hero.headline[1]} delay={450} stagger={90} />
+            <h1 className="text-[clamp(2.25rem,7vw,7.5rem)] leading-[1.1] font-extralight tracking-[-0.035em]">
+              <AnimatedText as="span" className="block" text={hero.headline} delay={150} stagger={40} />
             </h1>
           </div>
 
           <AnimatedText
             as="p"
-            className="ml-auto max-w-2xl text-2xl leading-snug font-light text-muted md:text-3xl"
+            className="mt-5 sm:mt-0 ml-auto max-w-2xl text-2xl leading-snug font-light text-muted md:text-3xl"
             text={hero.intro}
             delay={900}
             stagger={28}
@@ -125,15 +125,7 @@ export default function Home() {
           <div className="grid gap-x-10 gap-y-20 md:grid-cols-2">
             {work.map((project, i) => (
               <Reveal key={project.title} delay={(i % 2) * 150} className={i % 2 === 1 ? "md:mt-40" : ""}>
-                <Link href={`/work/${project.slug}`} className="block">
-                  <div className={`relative aspect-[4/3] overflow-hidden bg-gradient-to-br ${project.tone}`}>
-                    <span className="absolute top-6 right-6 rounded-full bg-background/90 px-4 py-1 text-base">
-                      case study
-                    </span>
-                  </div>
-                  <h3 className="mt-6 text-3xl font-light">{project.title}</h3>
-                  <p className="text-2xl text-muted">{project.subtitle}</p>
-                </Link>
+                <WorkCard slug={project.slug} title={project.title} subtitle={project.subtitle} tone={project.tone} />
               </Reveal>
             ))}
           </div>
@@ -174,7 +166,7 @@ export default function Home() {
             <Reveal className="mt-14">
               <a
                 href={`mailto:${site.email}`}
-                className="inline-flex items-center gap-4 rounded-full bg-background px-8 py-4 text-2xl text-foreground transition-transform duration-300 hover:-translate-y-1"
+                className="hidden items-center gap-4 rounded-full bg-background px-8 py-4 text-2xl text-foreground transition-transform duration-300 hover:-translate-y-1 md:inline-flex"
               >
                 {site.ctaLabel}
                 <span aria-hidden="true">→</span>

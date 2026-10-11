@@ -69,7 +69,7 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex items-center gap-6">
-            <a href={`mailto:${site.email}`} className="hidden text-2xl font-medium md:inline nav-link-bold">
+            <a href={`mailto:${site.email}`} className="!hidden text-2xl font-medium md:!inline nav-link-bold">
               {site.ctaLabel}
             </a>
             <a
@@ -142,19 +142,6 @@ export function SiteHeader() {
               {link.label}
             </a>
           ))}
-
-          <a
-            href={`mailto:${site.email}`}
-            onClick={closeInstantly}
-            className="mt-16 inline-flex items-center gap-4 self-start py-3 text-4xl font-normal"
-          >
-            {site.ctaLabel}
-            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-background text-foreground">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </span>
-          </a>
         </nav>
       </div>
     </>
